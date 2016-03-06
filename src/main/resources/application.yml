@@ -7,8 +7,8 @@ multipart:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cruxer
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:file:./cruxer
     username: cruxer
     password: cruxer
 
@@ -20,11 +20,9 @@ spring:
     show-sql: false
     hibernate:
       ddl-auto: create-drop
-      #ddl-auto: create
-      #ddl-auto: validate
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+        dialect: org.hibernate.dialect.H2Dialect
 
   thymeleaf:
     mode: LEGACYHTML5

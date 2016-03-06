@@ -53,7 +53,7 @@ public class Account {
     @JsonView(AccountViews.Info.class)
     private String lastname;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     @JsonView(AccountViews.Email.class)
     private String email;
 

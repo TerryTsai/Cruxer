@@ -122,10 +122,13 @@ public class AccountControllerTest {
     @Test
     @WithMockUser(username = "jdoe05", password = "abc123", roles = {"USER"})
     public void putAccountEmailExists() {
-        AssertEx.exception(
-                CruxerException.class,
-                () -> accountRestController.putAccount(account1.getId(), "1", "2", "3", "4", "five@example.com")
-        );
+        Account expected = accountRestController.putAccount(account1.getId(), "1", "2", "3", "4", "five@example.com");
+        Account actual = accountRepository.findOne(account1.getId());
+        Assert.assertTrue(expected.matches(actual));
+
+        expected = Account.createAccount("1", "2", "3", "4", "five@example.com");
+        expected.setId(account1.getId());
+        Assert.assertTrue(expected.matches(actual));
     }
 
 }

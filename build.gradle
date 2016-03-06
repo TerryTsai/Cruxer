@@ -27,9 +27,12 @@ repositories {
 // Cruxer Packaging
 jar {
     baseName = 'cruxer'
-    version =  '0.1.0'
+    version =  '0.0.1'
 }
 
+// Gulp Tasks
+gulp_build.dependsOn 'installGulp'
+gulp_build.dependsOn 'npmInstall'
 build.dependsOn gulp_build
 run.dependsOn gulp_build
 

@@ -1,0 +1,112 @@
+@media only screen and (min-width: 768px) {
+    /* tablets and desktop */
+}
+
+@media only screen and (max-width: 767px) {
+    .w1-10 {
+        width: 100%;
+    }
+    .w2-10 {
+        width: 100%;
+    }
+    .w3-10 {
+        width: 100%;
+    }
+    .w4-10 {
+        width: 100%;
+    }
+    .w5-10 {
+        width: 100%;
+    }
+    .w6-10 {
+        width: 100%;
+    }
+    .w7-10 {
+        width: 100%;
+    }
+    .w8-10 {
+        width: 100%;
+    }
+    .w9-10 {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) and (orientation: portrait) {
+    /* portrait phones */
+}
+
+body {
+    margin: 0 30px;
+}
+
+nav {
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+section {
+    padding: 30px 0;
+}
+
+footer {
+    border-top: 1px solid black;
+}
+
+fieldset {
+    font-family: 'Lato', sans-serif;
+}
+
+form {
+    width: 300px;
+    margin: auto;
+}
+
+input {
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0px solid;
+    border-bottom: 1px solid #999;
+    font-size: 1.4em;
+    outline: none;
+    padding: 2px 0;
+    text-align: center;
+    width: 100%;
+}
+
+#submit:hover, #submit:focus,
+#forgot:hover, #forgot:focus {
+    background-color: #333;
+    color: #ddd;
+    transition: background-color .3s, color .3s;    
+}
+
+.nav-logo {
+    padding: 0 10px;
+}
+
+.nav-link {
+    color: #333;
+    font-family: 'Lato', sans-serif;
+    padding: 2px 20px;
+    text-decoration: none;
+}
+
+.active, .nav-link:hover, .nav-link:focus {
+    background-color: #333;
+    color: #ddd;
+    outline: none;
+    transition: background-color .3s, color .3s;
+}
+
+.made-by {
+    font-family: "Lato", sans-serif;
+    text-align: center;
+    padding: 30px 0;
+}
+
+#cruxer-canvas {
+    touch-action: none;
+}

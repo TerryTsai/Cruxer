@@ -36,6 +36,27 @@ gulp_build.dependsOn 'npmInstall'
 build.dependsOn gulp_build
 run.dependsOn gulp_build
 
+// Deployment Tasks
+task deployClean(type: Delete) {
+    delete 'deploy'
+}
+
+task deployGather(dependsOn: ['deployClean', 'build']) << {
+    copy {
+        from 'build/libs'
+        into 'deploy'
+    }
+    copy {
+        from 'site'
+        into 'deploy/site'
+    }
+}
+
+task deployZip(type: Zip, dependsOn: ['deployGather']) {
+    from 'deploy'
+    baseName = 'Cruxer-Deployable'
+}
+
 // Dependencies
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'

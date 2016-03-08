@@ -20,7 +20,7 @@
 <div th:replace="header :: header"></div>
 
 <section>
-    <form action="#" method="post" id="register">
+    <form id="register">
         <fieldset>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <input name="firstname" type="text" placeholder="First Name" autofocus required>
@@ -28,16 +28,28 @@
             <input name="email" type="text" placeholder="Email Address" required>
             <input name="username" type="text" placeholder="Username" required>
             <input name="password" type="password" placeholder="Password" required>
-            <button id="submit" type="button">Register</button>
+            <button id="submit" type="submit">Register</button>
         </fieldset>
     </form>
 </section>
 
 <script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/jquery.form.min.js"></script>
 <script src="js/api.js"></script>
 <script>
-    $('#submit').click(function () {
-        API.postAccount($('#register'), $('#submit'));
+    $(document).ready(function () {
+        $('#register').ajaxForm({
+            url: "accounts",
+            type: "post",
+            dataType: "json",
+            success: function (e) {
+                $('#submit').html("Registered.");
+                $('#submit').prop("disabled", true);
+            },
+            error: function (e) {
+                $('#submit').html("Try Again?");
+            }
+        })
     });
 </script>
 </body>

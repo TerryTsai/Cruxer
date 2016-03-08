@@ -44,9 +44,9 @@ gulp.task('cssdist', function () {
 
 gulp.task('watch', function () {
     gulp.watch(source + '*.*', ['rootdist']);
-    gulp.watch(source + 'js/*.js', ['jslint', 'jsmin', 'jsdist']);
+    gulp.watch(source + 'js/*.js', ['jsdist']);
     gulp.watch(source + 'img/*.*', ['imgdist']);
     gulp.watch(source + 'css/*.css', ['cssdist']);
 });
 
-gulp.task('build', ['jslint', 'jsmin', 'jsdist', 'imgdist', 'cssdist', 'rootdist']);
+gulp.task('build', ['jsdist', 'imgdist', 'cssdist', 'rootdist']);

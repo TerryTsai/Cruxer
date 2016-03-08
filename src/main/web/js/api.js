@@ -19,6 +19,20 @@ var API = (function($, a) {
         });
     };
 
+    a.postHold = function(form, submit) {
+        $.ajax({
+            url: "holds",
+            type: "post",
+            dataType: "json",
+            success: function (e) {
+                submit.html("Registered.");
+                submit.prop("disabled", true);
+            },
+            error: function (e) {
+                submit.html("Try Again?");
+            }
+        })
+    };
 
     return a;
 

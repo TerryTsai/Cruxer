@@ -29,7 +29,7 @@ spring:
     cache: false
     enabled: true
     suffix: .html
-    prefix: file:site/
+    prefix: classpath:/
 
   mail:
       host: smtp.gmail.com

@@ -4,11 +4,11 @@ import email.com.gmail.ttsai0509.cruxer.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RestResource(exported = false)
+@RepositoryRestResource(exported = false)
 public interface CommentRepository extends JpaRepository<Comment, String> {
 
     public Page<Comment> findByAccount(Account account, Pageable pageable);

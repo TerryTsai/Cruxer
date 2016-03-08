@@ -10,7 +10,8 @@ Run server with `gradle run`.
 
 Deploy
 ======
-Create deployable with `gradle deployZip`. Extract `build/distributions/Cruxer-Deployable.zip` onto server and run `java -jar cruxer-0.0.1.jar`.
+~~Create deployable with `gradle deployZip`. Extract `build/distributions/Cruxer-Deployable.zip` onto server and run `java -jar cruxer-0.0.1.jar`.~~
+**Moving to a completely self-contained jar.**
 
 Configuration
 =============

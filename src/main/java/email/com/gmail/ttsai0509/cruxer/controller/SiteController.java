@@ -4,6 +4,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SiteController {
@@ -14,9 +15,15 @@ public class SiteController {
     }
 
     @Secured({"ROLE_USER"})
-    @RequestMapping(value = {"/viewer.html"}, method = RequestMethod.GET)
-    public String getViewer() {
-        return "viewer";
+    @RequestMapping(value = {"/design.html"}, method = RequestMethod.GET)
+    public String getDesign() {
+        return "design";
+    }
+
+    @Secured({"ROLE_USER"})
+    @RequestMapping(value = {"/upload.html"}, method = RequestMethod.GET)
+    public String getUpload() {
+        return "upload";
     }
 
     @RequestMapping(value = {"/about.html"}, method = RequestMethod.GET)

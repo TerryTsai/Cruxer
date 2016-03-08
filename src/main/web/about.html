@@ -17,27 +17,14 @@
 </head>
 
 <body>
-
-<nav class="flex">
-    <img src='img/logo.png'/>
-
-    <div class='flex-left'>
-        <a href='index.html'>HOME</a>
-        <a href='viewer.html'>DESIGN</a>
-        <a href='about.html'>ABOUT</a>
-    </div>
-    <div class='flex-right' th:if="${account == null}">
-        <a href='login.html'>LOGIN</a>
-        <a href='register.html'>REGISTER</a>
-    </div>
-    <form class='flex-right' th:if="${account != null}" action="logout" method="post">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <a href="javascript:;" onclick="parentNode.submit();">LOGOUT</a>
-    </form>
-</nav>
+<div th:replace="header :: header"></div>
 
 <section>
 </section>
+
+<footer>
+    <div class='made-by'>Made by Terry Tsai.</div>
+</footer>
 
 </body>
 

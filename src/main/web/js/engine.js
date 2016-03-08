@@ -4,8 +4,8 @@ CRUXER = (function (C, B) {
 
     "use strict";
 
-    /* Common Key Code Constants */
     C.KEYCODES = {
+        /* Common Key Code Constants */
         DOM_VK_CANCEL: 3,
         DOM_VK_HELP: 6,
         DOM_VK_BACK_SPACE: 8,
@@ -123,8 +123,9 @@ CRUXER = (function (C, B) {
         DOM_VK_META: 224
     };
 
-    /* URL Tools - http://befused.com/javascript/get-filename-url */
     C.getFilenameFromUrl = function (url) {
+        //URL Tools - http://befused.com/javascript/get-filename-url
+
         //this removes the anchor at the end, if there is one
         url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
 
@@ -136,10 +137,10 @@ CRUXER = (function (C, B) {
     };
 
     C.getRootUrlFromUrl = function (url) {
+        //URL Tools - http://befused.com/javascript/get-filename-url
         return url.substring(0, url.lastIndexOf("/") + 1);
     };
 
-    /* Random Experimental Snippets */
     C.generateGround = function (scene, name, type) {
         var ground = B.Mesh.CreateGround(name, 200.0, 200.0, 1, scene),
             material = new B.StandardMaterial(name + ".tex", scene);
@@ -176,7 +177,7 @@ CRUXER = (function (C, B) {
             material.diffuseTexture.vScale = 6;
             material.specularColor = new B.Color3(0, 0, 0);
         } else {
-            material.diffuseColor = new B.Color3(0.5, 0.5, 0.5);
+            material.diffuseColor = new B.Color3(0.9, 0.9, 0.9);
         }
 
         ground.material = material;
@@ -454,7 +455,7 @@ CRUXER = (function (C, B, D, J) {
 
         // Babylon Scene
         this.scene = new B.Scene(this.engine);
-        this.scene.clearColor = B.Color3.FromHexString("#8BC34A");
+        this.scene.clearColor = B.Color3.FromHexString("#FFFFFF");
 
         // Babylon Camera
         //this.camera = new B.CustomJoysticksCamera("camera", new B.Vector3(0, 25, 100), this.scene);
@@ -486,8 +487,6 @@ CRUXER = (function (C, B, D, J) {
     };
 
     C.Engine.prototype.loadScene = function () {
-        var skybox = C.generateSkybox(this.scene, "", "TropicalSunnyDay", 1);
-
         var floor = C.generateGround(this.scene, "", 3);
         floor.type = "floors";
         floor.usage = "instance";
@@ -495,9 +494,9 @@ CRUXER = (function (C, B, D, J) {
         var light0 = new B.HemisphericLight("", new B.Vector3(0, 1, 0), this.scene);
         light0.intensity = 0.9;
 
-        var light1 = new B.PointLight("", new B.Vector3(0, 0, 0), this.scene);
-        light1.diffuse = new B.Color3(1, 0, 0);
-        light1.specular = new B.Color3(1, 1, 1);
+        // var light1 = new B.PointLight("", new B.Vector3(0, 0, 0), this.scene);
+        // light1.diffuse = new B.Color3(1, 0, 0);
+        // light1.specular = new B.Color3(1, 1, 1);
 
         this.assets.load();
     };

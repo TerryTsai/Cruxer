@@ -62,12 +62,12 @@ form {
     margin: auto;
 }
 
-input {
+input, form button {
     background-color: transparent;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    border: 0px solid;
+    border: 0 solid;
     border-bottom: 1px solid #999;
     font-size: 1.4em;
     outline: none;
@@ -76,25 +76,28 @@ input {
     width: 100%;
 }
 
-#submit:hover, #submit:focus,
-#forgot:hover, #forgot:focus {
+form button:not([disabled]):hover, form button:not([disabled]):focus {
     background-color: #333;
     color: #ddd;
-    transition: background-color .3s, color .3s;    
+    transition: background-color .3s, color .3s;
 }
 
-.nav-logo {
+form button:disabled {
+    border: 0 solid;
+}
+
+nav img {
     padding: 0 10px;
 }
 
-.nav-link {
+nav a {
     color: #333;
     font-family: 'Lato', sans-serif;
     padding: 2px 20px;
     text-decoration: none;
 }
 
-.active, .nav-link:hover, .nav-link:focus {
+nav a:hover, nav a:focus {
     background-color: #333;
     color: #ddd;
     outline: none;

@@ -94,7 +94,8 @@ public class AccountRestController {
             @RequestParam(required = true) String password,
             @RequestParam(required = true) String firstname,
             @RequestParam(required = true) String lastname,
-            @RequestParam(required = true) String email) {
+            @RequestParam(required = true) String email
+    ) {
 
         Account usernameAcct = accountRepo.findByUsername(username);
         if (usernameAcct != null)
@@ -126,7 +127,6 @@ public class AccountRestController {
         accountRepo.save(usernameAcct);
 
     }
-
 
     @RequestMapping(value ="/reset", method = RequestMethod.POST)
     public void postReset(

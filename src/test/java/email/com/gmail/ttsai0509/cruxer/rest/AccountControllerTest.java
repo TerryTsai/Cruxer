@@ -79,7 +79,7 @@ public class AccountControllerTest {
 
     @Test
     @WithMockUser(username = "jdoe05", password = "abc123", roles = {"USER"})
-    public void putAccountPass() {
+    public void putAccountUpdatePassword() {
         Account expected = accountRestController.putAccount(account1.getId(), "un", "hw", "fn", "ln", "em");
         Account actual = accountRepository.findOne(account1.getId());
         Assert.assertTrue(expected.matches(actual));
@@ -121,7 +121,7 @@ public class AccountControllerTest {
 
     @Test
     @WithMockUser(username = "jdoe05", password = "abc123", roles = {"USER"})
-    public void putAccountEmailExists() {
+    public void putAccountCanUseExistingEmail() {
         Account expected = accountRestController.putAccount(account1.getId(), "1", "2", "3", "4", "five@example.com");
         Account actual = accountRepository.findOne(account1.getId());
         Assert.assertTrue(expected.matches(actual));

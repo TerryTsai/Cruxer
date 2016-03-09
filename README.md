@@ -26,4 +26,4 @@ set `spring.profiles.active=production` in `src/main/resources/application.yml` 
 
 Configuration
 =============
-For the Email Service work correctly, configure `spring.mail.username` and `spring.mail.password` located in `src/main/resources/application.yml`
+For the Email Service to work correctly, configure `spring.mail.username` and `spring.mail.password` located in `src/main/resources/application.yml`

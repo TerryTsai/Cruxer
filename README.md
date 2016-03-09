@@ -2,15 +2,15 @@ Cruxer - Social RouteSetting
 ============================
 **Note** : Still a work in progress.
 
-Run
-===
+Usage
+=====
 ```
+// To quickly run
 gradle run
-```
 
-Deploy
-======
-```
+- or -
+
+// To create jar
 gradle build
 java -jar build/libs/cruxer-0.0.1.jar
 ```

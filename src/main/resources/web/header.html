@@ -32,7 +32,7 @@
     </div>
     <form class='flex-right' th:if="${account != null}" action="logout" method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <a href="javascript:;" onclick="parentNode.submit();">LOGOUT</a>
+            <a href="javascript:" onclick="parentNode.submit();">LOGOUT</a>
     </form>
 </nav>
 </html>

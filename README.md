@@ -1,17 +1,28 @@
 Cruxer - Social RouteSetting
 ============================
-**Note** : Not yet in a functional state.
-
-**Requires Node.js and npm.**
+**Note** : Still a work in progress.
 
 Run
 ===
-Run server with `gradle run`.
+```
+gradle run
+```
 
 Deploy
 ======
-~~Create deployable with `gradle deployZip`. Extract `build/distributions/Cruxer-Deployable.zip` onto server and run `java -jar cruxer-0.0.1.jar`.~~
-**Moving to a completely self-contained jar.**
+```
+gradle build
+java -jar build/libs/cruxer-0.0.1.jar
+```
+
+Profiles
+========
+- `development` : serves web files from `file:src/main/resources/web`, so they can be modified without
+having to redeploy. **This is currently the default.**
+
+- `production` : serves web files from `classpath:/web/` to keep everything self contained. To use, either
+set `spring.profiles.active=production` in `src/main/resources/application.yml` or run jar with
+`-Dspring.profiles.active=production`.
 
 Configuration
 =============

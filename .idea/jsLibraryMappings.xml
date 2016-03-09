@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular, foundation, html5, jquery, jquery.unveil}" />
+    <file url="PROJECT" libraries="{angular, browser, foundation, hand, html5, jquery, jquery.unveil, moment}" />
   </component>
 </project>

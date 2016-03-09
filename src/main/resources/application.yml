@@ -10,7 +10,7 @@ spring:
 
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:cruxer
+    url: jdbc:h2:mem:cruxer;DB_CLOSE_ON_EXIT=FALSE
     username: cruxer
     password: cruxer
 
@@ -27,7 +27,6 @@ spring:
     cache: false
     enabled: true
     suffix: .html
-    prefix: classpath:/
 
   mail:
       host: smtp.gmail.com
@@ -44,6 +43,7 @@ spring:
 
 logging.level.org.springframework: INFO
 
+# Should probably belong in development profile
 upload.file:
   url: http://localhost/files/
   path: files/

@@ -142,5 +142,13 @@
     <orderEntry type="library" exported="" name="Gradle: com.google.guava:guava:16.0.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context-support:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.mail:javax.mail-api:1.5.5" level="project" />
+    <orderEntry type="library" name="angular" level="application" />
+    <orderEntry type="library" name="foundation" level="application" />
+    <orderEntry type="library" name="html5" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery.unveil" level="application" />
+    <orderEntry type="library" name="moment" level="application" />
+    <orderEntry type="library" name="browser" level="application" />
+    <orderEntry type="library" name="hand" level="application" />
   </component>
 </module>

@@ -45,29 +45,29 @@
             url: "holds",
             type: "post",
             dataType: "json",
-            success: function (e) {
+            success: function () {
                 holdSubmit.html("Registered.");
                 holdSubmit.prop("disabled", true);
             },
-            error: function (e) {
+            error: function () {
                 holdSubmit.html("Try Again?");
                 holdSubmit.blur();
             }
-        })
+        });
         var wallSubmit = $('#wall-submit');
         $("#wall-form").ajaxForm({
             url: "walls",
             type: "post",
             dataType: "json",
-            success: function (e) {
+            success: function () {
                 wallSubmit.html("Registered.");
                 wallSubmit.prop("disabled", true);
             },
-            error: function (e) {
+            error: function () {
                 wallSubmit.html("Try Again?");
                 wallSubmit.blur();
             }
-        })
+        });
     });
 </script>
 </body>

@@ -42,11 +42,11 @@
             url: "accounts",
             type: "post",
             dataType: "json",
-            success: function (e) {
+            success: function () {
                 submit.html("Registered.");
                 submit.prop("disabled", true);
             },
-            error: function (e) {
+            error: function () {
                 submit.html("Try Again?");
                 submit.blur();
             }

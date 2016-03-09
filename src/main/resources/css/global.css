@@ -59,6 +59,7 @@ fieldset {
 
 form {
     width: 300px;
+    padding: 20px;
     margin: auto;
 }
 

@@ -20,37 +20,54 @@
 <div th:replace="header :: header"></div>
 
 <section>
-    <form id="upload" action="holds" method="post">
+    <form id="hold-form">
         <fieldset>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <input name="file" type="file" autofocus required>
-            <select name="category" required>
-                <option value="" disabled selected>Type</option>
-                <option value="hold">Hold</option>
-                <option value="wall">Wall</option>
-            </select>
-            <button id="submit" type="submit">Upload</button>
+            <button id="hold-submit" type="submit">Upload Hold</button>
+        </fieldset>
+    </form>
+    <form id="wall-form">
+        <fieldset>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input name="file" type="file" autofocus required>
+            <button id="wall-submit" type="submit">Upload Wall</button>
         </fieldset>
     </form>
 </section>
 
 <script src="js/jquery-2.2.1.min.js"></script>
 <script src="js/jquery.form.min.js"></script>
-<script src="js/api.js"></script>
 <script>
     $(document).ready(function () {
-        $('#upload').ajaxForm({
+        var holdSubmit = $('#hold-submit');
+        $("#hold-form").ajaxForm({
             url: "holds",
             type: "post",
             dataType: "json",
             success: function (e) {
-                $('#submit').html("Uploaded.");
-                $('#submit').prop("disabled", true);
+                holdSubmit.html("Registered.");
+                holdSubmit.prop("disabled", true);
             },
             error: function (e) {
-                $('#submit').html("Try Again?");
+                holdSubmit.html("Try Again?");
+                holdSubmit.blur();
             }
-        });
+        })
+        var wallSubmit = $('#wall-submit');
+        $("#wall-form").ajaxForm({
+            url: "walls",
+            type: "post",
+            dataType: "json",
+            success: function (e) {
+                wallSubmit.html("Registered.");
+                wallSubmit.prop("disabled", true);
+            },
+            error: function (e) {
+                wallSubmit.html("Try Again?");
+                wallSubmit.blur();
+            }
+        })
     });
 </script>
 </body>

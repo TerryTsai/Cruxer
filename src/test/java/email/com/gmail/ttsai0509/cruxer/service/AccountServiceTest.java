@@ -2,7 +2,7 @@ package email.com.gmail.ttsai0509.cruxer.service;
 
 import email.com.gmail.ttsai0509.cruxer.Cruxer;
 import email.com.gmail.ttsai0509.cruxer.config.SecurityConfig;
-import email.com.gmail.ttsai0509.cruxer.config.WebMvcConfig;
+import email.com.gmail.ttsai0509.cruxer.config.production.WebMvcConfig;
 import email.com.gmail.ttsai0509.cruxer.model.Role;
 import email.com.gmail.ttsai0509.cruxer.model.Account;
 import email.com.gmail.ttsai0509.cruxer.repository.AccountRepository;

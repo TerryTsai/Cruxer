@@ -35,19 +35,20 @@
 
 <script src="js/jquery-2.2.1.min.js"></script>
 <script src="js/jquery.form.min.js"></script>
-<script src="js/api.js"></script>
 <script>
     $(document).ready(function () {
+        var submit = $('#submit');
         $('#register').ajaxForm({
             url: "accounts",
             type: "post",
             dataType: "json",
             success: function (e) {
-                $('#submit').html("Registered.");
-                $('#submit').prop("disabled", true);
+                submit.html("Registered.");
+                submit.prop("disabled", true);
             },
             error: function (e) {
-                $('#submit').html("Try Again?");
+                submit.html("Try Again?");
+                submit.blur();
             }
         })
     });

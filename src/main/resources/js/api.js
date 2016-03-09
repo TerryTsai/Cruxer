@@ -5,7 +5,7 @@
 var API = (function($, a) {
 
     a.postAccount = function(form, submit) {
-        $.ajax({
+        $.ajaxSubmit({
             url: "accounts",
             type: "post",
             data: $(form).serialize(),
@@ -20,8 +20,23 @@ var API = (function($, a) {
     };
 
     a.postHold = function(form, submit) {
-        $.ajax({
+        $.ajaxSubmit({
             url: "holds",
+            type: "post",
+            dataType: "json",
+            success: function (e) {
+                submit.html("Registered.");
+                submit.prop("disabled", true);
+            },
+            error: function (e) {
+                submit.html("Try Again?");
+            }
+        })
+    };
+
+    a.postWall = function(form, submit) {
+        $.ajaxSubmit({
+            url: "walls",
             type: "post",
             dataType: "json",
             success: function (e) {

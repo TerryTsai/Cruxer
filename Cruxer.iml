@@ -3,12 +3,17 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Spring Application Context" removed="false">
+        <fileset id="fileset" name="Production" removed="false" profiles="production">
           <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/Cruxer.java</file>
           <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/AsyncConfig.java</file>
-          <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/CachingConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/SecurityConfig.java</file>
           <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/WebMvcConfig.java</file>
+        </fileset>
+        <fileset id="fileset2" name="Development" removed="false" profiles="development">
+          <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/AsyncConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/Cruxer.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/SecurityConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/email/com/gmail/ttsai0509/cruxer/config/development/WebMvcConfig.java</file>
         </fileset>
       </configuration>
     </facet>

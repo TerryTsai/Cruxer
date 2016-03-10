@@ -46,7 +46,10 @@ public class HoldRestController {
 
     @JsonView(HoldViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Hold postHold(@RequestParam MultipartFile file) {
+    public Hold postHold(
+            @RequestParam MultipartFile file,
+            @RequestParam String thumbnail
+    ) {
 
         Account account = accountService.getCurrentAccount();
         if (account == null)
@@ -56,7 +59,11 @@ public class HoldRestController {
         if (model == null || model.isEmpty())
             throw new ResourceNotFoundException("");
 
-        Hold hold = new Hold(account, model);
+        String thumb = fileService.saveBase64(thumbnail, FileService.Base64DataType.JPEG);
+        if (thumb == null || thumb.isEmpty())
+            throw new ResourceNotFoundException("");
+
+        Hold hold = new Hold(account, model, thumb);
         return holdRepo.save(hold);
 
     }

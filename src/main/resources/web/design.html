@@ -30,7 +30,7 @@
     <script src='js/jquery-2.2.1.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js'></script>
     <!-- ReactJS -->
-    <script src='js/react.min.js'></script>
+    <script src='js/react.js'></script>
     <script src='js/react-dom.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <!-- Babylon -->
@@ -40,50 +40,11 @@
     <script src='js/customJoystick.js'></script>
     <script src='js/customJoystickCamera.js'></script>
     <script src='js/engine.js'></script>
-    <script type='text/babel' src='js/HoldView.jsx'></script>
-    <script>
-
-    </script>
+    <script type='text/babel' src='jsx/HoldView.jsx'></script>
+    <script type='text/babel' src='jsx/HoldListView.jsx'></script>
     <script type='text/babel'>
-        var HoldView = React.createClass({
-            render: function() {
-                return (
-                    <h1>by {this.props.hold.account.username} {moment(this.props.hold.date).fromNow()}</h1>
-                );
-            }
-        });
-
-        var HoldListView = React.createClass({
-            getInitialState: function() {
-                return {holds : []};
-            },
-
-            render: function() {
-                var hvs = this.state.holds.map(function(hold) {
-                    return (<HoldView hold={hold}/>);
-                });
-                return (
-                    <div>
-                        <div>{hvs}</div>
-                        <button onclick="{this.getHolds}">Load</button>
-                    </div>
-                );
-            },
-
-            getHolds: function() {
-                console.log("Clicked");
-                $.ajax({
-                    url: "holds",
-                    dataType: 'json',
-                    success: function(data) {
-                        this.setState({holds: data});
-                    }.bind(this)
-                });
-            }
-        })
-
         ReactDOM.render(
-            <HoldListView/>,
+            <HoldListView />,
             document.getElementById('example')
         );
     </script>

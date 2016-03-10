@@ -75,7 +75,7 @@ public class RouteRestController {
                 throw new ResourceNotFoundException("");
         }
 
-        String thumbnailUrl = fileService.saveBase64Png(thumbnail);
+        String thumbnailUrl = fileService.saveBase64(thumbnail, FileService.Base64DataType.PNG);
         if (thumbnailUrl == null || thumbnailUrl.isEmpty())
             throw new ResourceNotFoundException("");
 

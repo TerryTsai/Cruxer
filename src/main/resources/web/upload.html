@@ -8,7 +8,6 @@
     <meta name='description' content='Cruxer - Social Routesetting'>
     <meta name='author' content='Terry Tsai'>
     <title>Cruxer</title>
-
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Lato'>
     <link rel='stylesheet' type='text/css' href='css/reset.css'>
     <link rel='stylesheet' type='text/css' href='css/debug.css'>
@@ -17,59 +16,90 @@
 </head>
 
 <body>
-<div th:replace="header :: header"></div>
+    <div th:replace="header :: header"></div>
+    <section>
+        <form id="hold-form">
+            <fieldset>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input id="hold-file" name="file" type="file" autofocus required>
+                <canvas id="hold-thumb"></canvas>
+                <button id="hold-submit" type="submit" disabled>Upload Hold</button>
+            </fieldset>
+        </form>
+        <form id="wall-form">
+            <fieldset>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input id="wall-file" name="file" type="file" autofocus required>
+                <canvas id="wall-thumb"></canvas>
+                <button id="wall-submit" type="submit" disabled>Upload Wall</button>
+            </fieldset>
+        </form>
+    </section>
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery.form.min.js"></script>
+    <script src="js/jsmodeler.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/jsmodeler.ext.three.fix.js"></script>
+    <script src='js/thumbGen.js'></script>
+    <script>
+    $(document).ready(function() {
 
-<section>
-    <form id="hold-form">
-        <fieldset>
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <input name="file" type="file" autofocus required>
-            <button id="hold-submit" type="submit">Upload Hold</button>
-        </fieldset>
-    </form>
-    <form id="wall-form">
-        <fieldset>
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <input name="file" type="file" autofocus required>
-            <button id="wall-submit" type="submit">Upload Wall</button>
-        </fieldset>
-    </form>
-</section>
-
-<script src="js/jquery-2.2.1.min.js"></script>
-<script src="js/jquery.form.min.js"></script>
-<script>
-    $(document).ready(function () {
         var holdSubmit = $('#hold-submit');
         $("#hold-form").ajaxForm({
             url: "holds",
             type: "post",
             dataType: "json",
-            success: function () {
-                holdSubmit.html("Registered.");
+            beforeSubmit: function(arr, $form, options) {
+                var data = document.getElementById('hold-thumb').toDataURL("image/jpeg", 1.0);
+                arr.push({
+                    name: "thumbnail",
+                    value: data
+                });
+            },
+            success: function() {
+                holdSubmit.html("Uploaded.");
                 holdSubmit.prop("disabled", true);
             },
-            error: function () {
+            error: function() {
                 holdSubmit.html("Try Again?");
                 holdSubmit.blur();
             }
         });
+
         var wallSubmit = $('#wall-submit');
         $("#wall-form").ajaxForm({
             url: "walls",
             type: "post",
             dataType: "json",
-            success: function () {
-                wallSubmit.html("Registered.");
+            beforeSubmit: function(arr, $form, options) {
+                arr.push({
+                    name: "thumbnail",
+                    value: document.getElementById('wall-thumb').toDataURL()
+                });
+            },
+            success: function() {
+                wallSubmit.html("Uploaded.");
                 wallSubmit.prop("disabled", true);
             },
-            error: function () {
+            error: function() {
                 wallSubmit.html("Try Again?");
                 wallSubmit.blur();
             }
         });
+
+        THUMB.attach(
+            document.getElementById("hold-thumb"),
+            document.getElementById("hold-file"),
+            document.getElementById("hold-submit")
+        );
+
+        THUMB.attach(
+            document.getElementById("wall-thumb"),
+            document.getElementById("wall-file"),
+            document.getElementById("wall-submit")
+        );
     });
-</script>
+    </script>
 </body>
 
 </html>

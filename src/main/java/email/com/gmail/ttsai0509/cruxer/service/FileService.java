@@ -60,18 +60,18 @@ public class FileService {
         return url + filename;
     }
 
-    public String saveBase64Png(String base64Png) {
+    public String saveBase64(String base64Data, Base64DataType dataType) {
         File file;
         String filename;
 
         do {
-            filename = StringUtils.randomString(length, charset) + ".png";
+            filename = StringUtils.randomString(length, charset) + dataType.filetype;
             file = new File(path + filename);
         } while (file.exists());
 
         try {
             FileCopyUtils.copy(
-                    Base64.getDecoder().decode(base64Png.replace("data:image/png;base64,", "").getBytes()),
+                    Base64.getDecoder().decode(base64Data.replace(dataType.prefix, "").getBytes()),
                     file
             );
         } catch (Exception e) {
@@ -80,6 +80,20 @@ public class FileService {
 
         return url + filename;
 
+    }
+
+    public static enum Base64DataType {
+
+        PNG(".png", "data:image/png;base64,"),
+        JPEG(".jpeg", "data:image/jpeg;base64,");
+
+        public final String filetype;
+        public final String prefix;
+
+        Base64DataType(String filetype, String prefix) {
+            this.filetype = filetype;
+            this.prefix = prefix;
+        }
     }
 
 }

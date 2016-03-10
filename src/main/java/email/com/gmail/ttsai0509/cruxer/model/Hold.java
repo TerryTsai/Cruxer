@@ -15,9 +15,10 @@ public class Hold {
 
     public Hold() {}
 
-    public Hold(Account account, String model) {
+    public Hold(Account account, String model, String thumbnail) {
         this.setAccount(account);
         this.setModel(model);
+        this.setThumbnail(thumbnail);
         this.setDate(new Date());
     }
 
@@ -35,6 +36,10 @@ public class Hold {
     @JsonView(HoldViews.Model.class)
     private String model;
 
+    @Column(nullable = false)
+    @JsonView(HoldViews.Thumbnail.class)
+    private String thumbnail;
+
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonView(HoldViews.Account.class)
@@ -42,6 +47,7 @@ public class Hold {
 
     public boolean matches(Hold hold) {
         return Objects.equal(getId(), hold.getId())
-                && Objects.equal(getModel(), hold.getModel());
+                && Objects.equal(getModel(), hold.getModel())
+                && Objects.equal(getThumbnail(), hold.getThumbnail());
     }
 }

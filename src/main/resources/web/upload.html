@@ -22,6 +22,7 @@
             <fieldset>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input id="hold-file" name="file" type="file" autofocus required>
+                <label>Thumbnail</label>
                 <canvas id="hold-thumb"></canvas>
                 <button id="hold-submit" type="submit" disabled>Upload Hold</button>
             </fieldset>
@@ -30,6 +31,7 @@
             <fieldset>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input id="wall-file" name="file" type="file" autofocus required>
+                <label>Thumbnail</label>
                 <canvas id="wall-thumb"></canvas>
                 <button id="wall-submit" type="submit" disabled>Upload Wall</button>
             </fieldset>
@@ -40,7 +42,7 @@
     <script src="js/jsmodeler.js"></script>
     <script src="js/three.min.js"></script>
     <script src="js/jsmodeler.ext.three.fix.js"></script>
-    <script src='js/thumbGen.js'></script>
+    <script src='js/objThumb.js'></script>
     <script>
     $(document).ready(function() {
 
@@ -75,9 +77,10 @@
             type: "post",
             dataType: "json",
             beforeSubmit: function(arr, $form, options) {
+                var data = document.getElementById('wall-thumb').toDataURL("image/jpeg", 1.0);
                 arr.push({
                     name: "thumbnail",
-                    value: document.getElementById('wall-thumb').toDataURL()
+                    value: data
                 });
             },
             success: function() {
@@ -94,13 +97,17 @@
         THUMB.attach(
             document.getElementById("hold-thumb"),
             document.getElementById("hold-file"),
-            document.getElementById("hold-submit")
+            function () {
+                document.getElementById("hold-submit").disabled = false;
+            }
         );
 
         THUMB.attach(
             document.getElementById("wall-thumb"),
             document.getElementById("wall-file"),
-            document.getElementById("wall-submit")
+            function () {
+                document.getElementById("wall-submit").disabled = false;
+            }
         );
     });
     </script>

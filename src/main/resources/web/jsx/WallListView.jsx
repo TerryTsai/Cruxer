@@ -1,17 +1,17 @@
-window.HoldListView = React.createClass({
+window.WallListView = React.createClass({
 
     load: function() {
         $.ajax({
-            url: "debug/holds",
+            url: "debug/walls",
             dataType: 'json',
             success: function(data) {
-                this.setState({holds: data});
+                this.setState({walls: data});
             }.bind(this)
         });
     },
 
     getInitialState: function() {
-        return {holds : []};
+        return {walls : []};
     },
 
     componentDidMount: function() {
@@ -24,8 +24,8 @@ window.HoldListView = React.createClass({
                 <h1>{this.props.header}</h1>
                 <div>
                     {
-                        this.state.holds.map(function(hold) {
-                            return <HoldView key={hold.id} hold={hold} engine={this.props.engine}/>;
+                        this.state.walls.map(function(wall) {
+                            return <WallView key={wall.id} wall={wall} engine={this.props.engine}/>;
                         }.bind(this))
                     }
                 </div>

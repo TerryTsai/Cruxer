@@ -21,6 +21,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/web/js/");
         registry.addResourceHandler("/jsx/**").addResourceLocations("classpath:/web/jsx/");
 
+        // TODO : Server should be stateless. Files belong on separate file server.
         registry.addResourceHandler("/files/**").addResourceLocations("file:files/");
     }
 

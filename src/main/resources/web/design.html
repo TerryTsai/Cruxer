@@ -19,13 +19,20 @@
     <div th:replace="header :: header"></div>
     <section class='clearfix'>
         <canvas id='cruxer-canvas' class='w6-10 left border-box' style="border: 1px solid black;"></canvas>
-        <div class='w4-10 left border-box'>
-            <form class='border-box' style="width: calc(100% - 40px)">
-                <input type="text" placeholder="Search...">
-            </form>
-            <div id="example"></div>
-        </div>
-        <div class='w1-1 left border-box debug-green'></div>
+        <form id='cruxer-controls' class='w4-10 left border-box'>
+            <button class='border-box'>Move</button>
+            <button class='border-box'>Rotate</button>
+            <button class='border-box'>Delete</button>
+            <button class='border-box'>Save</button>
+        </form>
+
+        <form class='w1-1 center left border-box'>
+            <input type="text" placeholder="Search">
+        </form>
+
+        <div id="hold-list" class='w1-1 left border-box'></div>
+        <div id="wall-list" class='w1-1 left border-box'></div>
+        <div class='w1-1 left border-box debug-green'>asdf</div>
     </section>
     <script src='js/jquery-2.2.1.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js'></script>
@@ -42,11 +49,12 @@
     <script src='js/engine.js'></script>
     <script type='text/babel' src='jsx/HoldView.jsx'></script>
     <script type='text/babel' src='jsx/HoldListView.jsx'></script>
+    <script type='text/babel' src='jsx/WallView.jsx'></script>
+    <script type='text/babel' src='jsx/WallListView.jsx'></script>
     <script type='text/babel'>
-        ReactDOM.render(
-            <HoldListView />,
-            document.getElementById('example')
-        );
+        var engine = new CRUXER.Engine(window); engine.loadScene(); engine.run(); ReactDOM.render(
+        <HoldListView header="Holds" engine={engine}/>, document.getElementById('hold-list')); ReactDOM.render(
+        <WallListView header="Walls" engine={engine}/>, document.getElementById('wall-list'));
     </script>
 </body>
 

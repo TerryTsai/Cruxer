@@ -1,20 +1,28 @@
-if (window.File && window.FileReader && window.FileList && window.Blob) {
-// Great success! All the File APIs are supported.
-} else {
+/**
+ * Created by Terry on 3/10/2016.
+ */
+
+if (!window.File || !window.FileReader) {
     console.log('The File APIs are not fully supported in this browser. Thumbnail module may not work.');
 }
 
+/**
+ * Attaches a file input to a ThreeJS canvas allowing
+ * .obj models to be previewed or used for thumbnails
+ * by calling toDataURL() on the canvas.
+ *
+ */
+var THUMB = (function(THUMB, JSM) {
 
-var THUMB = (function(THUMB) {
-
-    THUMB.attach = function(canvas, input, submit) {
+    THUMB.attach = function(canvas, input, callback) {
         var viewerSettings = {
-            cameraEyePosition: [-2.0, -1.5, 1.0],
+            cameraEyePosition: [0.0, 5.0 , 10.0],
             cameraCenterPosition: [0.0, 0.0, 0.0],
-            cameraUpVector: [0.0, 0.0, 1.0]
+            cameraUpVector: [0.0, 1.0, 0.0]
         };
 
         var viewerInitialize = function(e) {
+            // TODO : Should not be remaking this each time we load a file.
             var viewer = new JSM.ThreeViewer();
             var json = JSM.ConvertObjToJsonData(e.target.result);
             var meshes = JSM.ConvertJSONDataToThreeMeshes(json);
@@ -22,7 +30,7 @@ var THUMB = (function(THUMB) {
             viewer.RemoveMeshes();
             viewer.AddMeshes(meshes);
             viewer.Draw();
-            submit.disabled = false;
+            callback();
         };
 
         input.onchange = function(e) {
@@ -35,4 +43,4 @@ var THUMB = (function(THUMB) {
 
     return THUMB;
 
-}(THUMB || {}));
+}(THUMB || {}, JSM));

@@ -1,6 +1,8 @@
-var CRUXER, BABYLON, $;
+/**
+ * Created by Terry on 3/6/2016.
+ */
 
-CRUXER = (function (C, B) {
+var CRUXER = (function (C, B) {
 
     "use strict";
 
@@ -212,7 +214,8 @@ CRUXER = (function (C, B) {
 
 }(CRUXER || {}, BABYLON));
 
-CRUXER = (function (C, B, D, J) {
+// TODO : Remove dependency on document and $
+var CRUXER = (function (C, B, D, J) {
 
     "use strict";
 
@@ -552,7 +555,6 @@ CRUXER = (function (C, B, D, J) {
             }.bind(this));
 
         }.bind(this));
-
     };
 
     C.Engine.prototype.exportRoute = function () {
@@ -620,6 +622,11 @@ CRUXER = (function (C, B, D, J) {
         });
     };
 
+    C.Engine.prototype.select = function (id, type) {
+        this.selectionId = id;
+        this.selectionType = type;
+    };
+
     C.Engine.prototype.run = function () {
         this.engine.runRenderLoop(function () {
             this.scene.render();
@@ -629,7 +636,3 @@ CRUXER = (function (C, B, D, J) {
     return C;
 
 }(CRUXER || {}, BABYLON, document, $));
-
-var engine = new CRUXER.Engine(window);
-engine.loadScene();
-engine.run();

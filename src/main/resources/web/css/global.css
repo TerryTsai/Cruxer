@@ -70,11 +70,11 @@ fieldset {
 
 form {
     width: 300px;
-    padding: 20px;
+    padding: 0 20px;
     margin: auto;
 }
 
-input, form button, select {
+input, button, select {
     background-color: transparent;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -88,11 +88,26 @@ input, form button, select {
     width: 100%;
 }
 
+label {
+    margin-top: 10px;
+    display: block;
+    color: #999;
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    font-size: 1.4em;
+    padding: 2px 0;
+    text-align: center;
+    width: 100%;
+}
+
 input, select {
     color: #999;
 }
 
-form button:not([disabled]):hover {
+button:not([disabled]):hover {
     background-color: #333;
     color: #ddd;
     transition: background-color .3s, color .3s;
@@ -102,7 +117,7 @@ option {
     text-align: center;
 }
 
-form button:disabled {
+button:disabled {
     border: 0 solid;
 }
 
@@ -132,4 +147,5 @@ nav a:hover, nav a:focus {
 
 #cruxer-canvas {
     touch-action: none;
+    margin-bottom: 20px;
 }

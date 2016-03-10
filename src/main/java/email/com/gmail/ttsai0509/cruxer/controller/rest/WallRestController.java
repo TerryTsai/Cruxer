@@ -46,7 +46,10 @@ public class WallRestController {
 
     @JsonView(WallViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Wall postWall(@RequestParam MultipartFile file) {
+    public Wall postWall(
+            @RequestParam MultipartFile file,
+            @RequestParam String thumbnail
+    ) {
 
         Account account = accountService.getCurrentAccount();
         if (account == null)
@@ -56,7 +59,11 @@ public class WallRestController {
         if (model == null || model.isEmpty())
             throw new ResourceNotFoundException("");
 
-        Wall wall = new Wall(account, model);
+        String thumb = fileService.saveBase64(thumbnail, FileService.Base64DataType.JPEG);
+        if (thumb == null || thumb.isEmpty())
+            throw new ResourceNotFoundException("");
+
+        Wall wall = new Wall(account, model, thumb);
         return wallRepo.save(wall);
 
     }

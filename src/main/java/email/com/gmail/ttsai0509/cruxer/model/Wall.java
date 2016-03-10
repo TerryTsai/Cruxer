@@ -15,9 +15,10 @@ public class Wall {
 
     public Wall() {}
 
-    public Wall(Account account, String model) {
+    public Wall(Account account, String model, String thumbnail) {
         this.setAccount(account);
         this.setModel(model);
+        this.setThumbnail(thumbnail);
         this.setDate(new Date());
     }
 
@@ -35,6 +36,10 @@ public class Wall {
     @JsonView(WallViews.Model.class)
     private String model;
 
+    @Column(nullable = false)
+    @JsonView(WallViews.Thumbnail.class)
+    private String thumbnail;
+
     @JoinColumn(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonView(WallViews.Account.class)
@@ -42,6 +47,7 @@ public class Wall {
 
     public boolean matches(Wall wall) {
         return Objects.equal(getId(), wall.getId())
-                && Objects.equal(getModel(), wall.getModel());
+                && Objects.equal(getModel(), wall.getModel())
+                && Objects.equal(getThumbnail(), wall.getThumbnail());
     }
 }

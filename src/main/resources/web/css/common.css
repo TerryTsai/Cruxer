@@ -21,14 +21,17 @@
 
 /* FLEX */
 .flex         { display: flex;   }
-.flex-left { 
+.flex-left {
     flex: 1;
     text-align: left;
 }
 .flex-right {
     flex: 1;
-    text-align: right; 
+    text-align: right;
 }
+
+/* CENTER */
+.center       { text-align: center; }
 
 /* BORDER BOX */
 .border-box, .border-box:before, .border-box:after {

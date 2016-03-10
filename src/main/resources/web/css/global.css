@@ -4,13 +4,13 @@
 
 @media only screen and (max-width: 767px) {
     .w1-10 {
-        width: 100%;
+        width: 33.33%;
     }
     .w2-10 {
-        width: 100%;
+        width: 33.33%;
     }
     .w3-10 {
-        width: 100%;
+        width: 33.33%;
     }
     .w4-10 {
         width: 100%;
@@ -43,6 +43,17 @@ body {
 nav {
     align-items: center;
     border-bottom: 1px solid black;
+}
+
+canvas {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
 }
 
 section {

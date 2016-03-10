@@ -13,11 +13,11 @@ window.HoldListView = React.createClass({
 
         return (
             <div>
+                <button onClick={this.load}>TEST</button>
                 <div>
                 {this.state.holds.map(function(hold) {
                     return <HoldView key={hold.id} hold={hold}/>;})}
                 </div>
-                <button onClick={this.load}>TEST</button>
             </div>
         );
     },

@@ -45,6 +45,7 @@
     $(document).ready(function() {
 
         var holdSubmit = $('#hold-submit');
+        var holdFile = $('#hold-file');
         $("#hold-form").ajaxForm({
             url: "holds",
             type: "post",
@@ -59,6 +60,7 @@
             success: function() {
                 holdSubmit.html("Uploaded.");
                 holdSubmit.prop("disabled", true);
+                holdFile.prop("disabled", true);
             },
             error: function() {
                 holdSubmit.html("Try Again?");
@@ -67,6 +69,7 @@
         });
 
         var wallSubmit = $('#wall-submit');
+        var wallFile = $('#wall-file');
         $("#wall-form").ajaxForm({
             url: "walls",
             type: "post",
@@ -80,6 +83,7 @@
             success: function() {
                 wallSubmit.html("Uploaded.");
                 wallSubmit.prop("disabled", true);
+                wallFile.prop("disabled", true);
             },
             error: function() {
                 wallSubmit.html("Try Again?");

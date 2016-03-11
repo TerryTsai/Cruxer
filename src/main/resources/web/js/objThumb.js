@@ -14,6 +14,8 @@ if (!window.File || !window.FileReader) {
  */
 var THUMB = (function(THUMB, JSM) {
 
+    "use strict";
+
     THUMB.attach = function(canvas, input, callback) {
         var viewerSettings = {
             cameraEyePosition: [0.0, 5.0 , 10.0],

@@ -46,15 +46,24 @@
     <script src='js/babylon.objFileLoader.js'></script>
     <script src='js/customJoystick.js'></script>
     <script src='js/customJoystickCamera.js'></script>
-    <script src='js/engine.js'></script>
+    <script src='js/cruxer.js'></script>
     <script type='text/babel' src='jsx/HoldView.jsx'></script>
     <script type='text/babel' src='jsx/HoldListView.jsx'></script>
     <script type='text/babel' src='jsx/WallView.jsx'></script>
     <script type='text/babel' src='jsx/WallListView.jsx'></script>
     <script type='text/babel'>
-        var engine = new CRUXER.Engine(window); engine.loadScene(); engine.run(); ReactDOM.render(
-        <HoldListView header="Holds" engine={engine}/>, document.getElementById('hold-list')); ReactDOM.render(
-        <WallListView header="Walls" engine={engine}/>, document.getElementById('wall-list'));
+        var engine = new CRUXER.Engine(window, document.getElementById('cruxer-canvas'));
+        engine.loadScene();
+        engine.run();
+
+        ReactDOM.render(
+            <HoldListView header="Holds" engine={engine}/>,
+            document.getElementById('hold-list')
+        );
+        ReactDOM.render(
+            <WallListView header="Walls" engine={engine}/>,
+            document.getElementById('wall-list')
+            );
     </script>
 </body>
 

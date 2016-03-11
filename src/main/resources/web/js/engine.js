@@ -477,7 +477,6 @@ var CRUXER = (function (C, B, D, J) {
         this.assets = new B.AssetsManager(this.scene);
         this.assets.useDefaultLoadingScreen = false;
         this.assets.onFinish = function (tasks) {
-            console.log("AssetManager completed " + tasks.length + " tasks.");
             if (tasks !== null) {
                 this.assets.reset();
             }
@@ -531,6 +530,8 @@ var CRUXER = (function (C, B, D, J) {
 
             // Otherwise use pointer pickInfo
             var pickInfo = this.scene.pick(this.scene.pointerX, this.scene.pointerY);
+
+            console.log(pickInfo);
 
             if (pickInfo.hit && collidesWith(type, pickInfo.pickedMesh)) {
                 instanceOn(id, type, template, pickInfo);

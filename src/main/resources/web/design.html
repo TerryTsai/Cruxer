@@ -32,9 +32,10 @@
 
         <div id="hold-list" class='w1-1 left border-box'></div>
         <div id="wall-list" class='w1-1 left border-box'></div>
-        <div class='w1-1 left border-box debug-green'>asdf</div>
+        <div class='w1-1 left border-box debug-green' style='height: 1000px'>asdf</div>
     </section>
     <script src='js/jquery-2.2.1.min.js'></script>
+    <script src='js/jquery.mousewheel.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js'></script>
     <!-- ReactJS -->
     <script src='js/react.js'></script>
@@ -51,11 +52,23 @@
     <script type='text/babel' src='jsx/HoldListView.jsx'></script>
     <script type='text/babel' src='jsx/WallView.jsx'></script>
     <script type='text/babel' src='jsx/WallListView.jsx'></script>
-    <script type='text/babel'>
-        var engine = new CRUXER.Engine(window, document.getElementById('cruxer-canvas'));
+    <script>
+        var engine = new CRUXER.Engine(document.getElementById('cruxer-canvas'));
         engine.loadScene();
         engine.run();
 
+        window.addEventListener("resize", function() {
+            this.engineResize();
+        }.bind(engine));
+
+        window.addEventListener("keypress", function(e) {
+            if (e.charCode === 96) {
+                this.engineDebug();
+            }
+        }.bind(engine));
+
+    </script>
+    <script type='text/babel'>
         ReactDOM.render(
             <HoldListView header="Holds" engine={engine}/>,
             document.getElementById('hold-list')

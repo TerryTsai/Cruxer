@@ -1,7 +1,8 @@
 (function(window) {
 
     var handleClick = function(props) {
-        props.engine.select(props.wall.id, "walls");
+        props.engine._id = props.wall.id;
+        props.engine._type = "walls";
     };
 
     window.WallView = React.createClass({

@@ -1,7 +1,8 @@
 (function(window) {
 
     var handleClick = function(props) {
-        props.engine.select(props.hold.id, "holds");
+        props.engine._id = props.hold.id;
+        props.engine._type = "holds";
     };
 
     window.HoldView = React.createClass({

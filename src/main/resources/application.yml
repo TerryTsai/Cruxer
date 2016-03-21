@@ -43,9 +43,11 @@ spring:
 
 logging.level.org.springframework: INFO
 
+error.whitelabel.enabled: false
+
 # Should probably belong in development profile
 upload.file:
-  url: http://localhost/files/
+  url: http://192.168.0.146/files/
   path: files/
   charset: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
   length: 25

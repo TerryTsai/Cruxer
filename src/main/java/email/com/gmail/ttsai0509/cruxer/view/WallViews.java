@@ -10,5 +10,5 @@ public interface WallViews {
 
     interface Debug extends Id, Date, Model, Thumbnail, Account, AccountViews.Standard {}
 
-    interface Standard extends Id, Date, Model {}
+    interface Standard extends Id, Date, Model, Thumbnail, Account, AccountViews.Username {}
 }

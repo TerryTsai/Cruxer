@@ -6,6 +6,8 @@ if (!window.File || !window.FileReader) {
     console.log('The File APIs are not fully supported in this browser. Thumbnail module may not work.');
 }
 
+var v;
+
 /**
  * Attaches a file input to a ThreeJS canvas allowing
  * .obj models to be previewed or used for thumbnails
@@ -16,7 +18,10 @@ var THUMB = (function(THUMB, JSM) {
 
     "use strict";
 
-    THUMB.attach = function(canvas, input, callback) {
+    THUMB.attach = function(canvas, input, onReady) {
+
+        onReady = onReady || function() {};
+
         var viewerSettings = {
             cameraEyePosition: [0.0, 5.0 , 10.0],
             cameraCenterPosition: [0.0, 0.0, 0.0],
@@ -32,7 +37,8 @@ var THUMB = (function(THUMB, JSM) {
             viewer.RemoveMeshes();
             viewer.AddMeshes(meshes);
             viewer.Draw();
-            callback();
+            onReady();
+            v = viewer;
         };
 
         input.onchange = function(e) {
@@ -40,6 +46,7 @@ var THUMB = (function(THUMB, JSM) {
             var reader = new FileReader();
             reader.onload = viewerInitialize;
             reader.readAsText(file);
+            onReady();
         };
     };
 

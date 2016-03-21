@@ -1,19 +1,29 @@
 (function(window) {
 
     var handleClick = function(props) {
-        props.engine._id = props.hold.id;
-        props.engine._type = "holds";
+        if (props.engine) {
+            props.engine._id = props.hold.id;
+            props.engine._type = "holds";
+        }
     };
 
     window.HoldView = React.createClass({
 
         render: function() {
             return (
-                <span onClick={handleClick.bind(this, this.props)} className="w2-10 left center">
-                    <img src={this.props.hold.thumbnail}></img>
-                    <h1>{this.props.hold.account.username}</h1>
-                    <h1>{moment(this.props.hold.date).fromNow()}</h1>
-                </span>
+                <div className='col-1-4'>
+                    <div className='content hold' onClick={handleClick.bind(this, this.props)}>
+                        <div className='hold__link__thumb'>
+                            <img src={this.props.hold.thumbnail}></img>
+                        </div>
+                        <div className='hold__link__info'>
+                            {this.props.hold.account.username}
+                        </div>
+                        <div className="hold__link__date">
+                            {moment(this.props.hold.date).fromNow()}
+                        </div>
+                    </div>
+                </div>
             );
         }
 

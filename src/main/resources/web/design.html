@@ -7,32 +7,49 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='description' content='Cruxer - Social Routesetting'>
     <meta name='author' content='Terry Tsai'>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
     <title>Cruxer</title>
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Lato'>
     <link rel='stylesheet' type='text/css' href='css/reset.css'>
     <link rel='stylesheet' type='text/css' href='css/debug.css'>
     <link rel='stylesheet' type='text/css' href='css/common.css'>
     <link rel='stylesheet' type='text/css' href='css/global.css'>
+    <link rel='stylesheet' type='text/css' href='css/simplegrid.css'>
+    <link rel='stylesheet' type='text/css' href='css/spectrum.css'>
+    <link rel='stylesheet' type='text/css' href='css/spectrum.custom.css'>
+    <link rel='stylesheet' type='text/css' href='css/hold.css'>
+    <link rel='stylesheet' type='text/css' href='css/wall.css'>
+    <link rel='stylesheet' type='text/css' href='css/cruxer.css'>
 </head>
 
 <body>
     <div th:replace="header :: header"></div>
-    <section class='clearfix'>
-        <canvas id='cruxer-canvas' class='w6-10 left border-box' style="border: 1px solid black;"></canvas>
-        <form id='cruxer-controls' class='w4-10 left border-box'>
-            <button class='border-box'>Move</button>
-            <button class='border-box'>Rotate</button>
-            <button class='border-box'>Delete</button>
-            <button class='border-box'>Save</button>
-        </form>
-
-        <form class='w1-1 center left border-box'>
-            <input type="text" placeholder="Search">
-        </form>
-
-        <div id="hold-list" class='w1-1 left border-box'></div>
-        <div id="wall-list" class='w1-1 left border-box'></div>
-        <div class='w1-1 left border-box debug-green' style='height: 1000px'>asdf</div>
+    <section class='grid grid-pad'>
+        <div class='col-2-3'>
+            <div class='content'>
+                <canvas id='cruxer-canvas'></canvas>
+                <input id='cruxer-color' type='text' class='w2-10 left'></input>
+                <button id='cruxer-save' class='w2-10 right'>Save</button>
+                <button id='cruxer-delete' class='w2-10 right'>Delete</button>
+            </div>
+        </div>
+        <div class='col-1-3'>
+            <div class='content'>
+            </div>
+        </div>
+        <div class='col-1-1'>
+            <div class='content'>
+                <span>HOLDS</span>
+                <div id="hold-list"></div>
+            </div>
+        </div>
+        <div class='col-1-1'>
+            <div class='content'>
+                <span>WALLS</span>
+                <div id="wall-list"></div>
+            </div>
+        </div>
     </section>
     <script src='js/jquery-2.2.1.min.js'></script>
     <script src='js/jquery.mousewheel.min.js'></script>
@@ -41,6 +58,8 @@
     <script src='js/react.js'></script>
     <script src='js/react-dom.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <!-- Spectrum -->
+    <script src='js/spectrum.js'></script>
     <!-- Babylon -->
     <script src='js/babylon.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/handjs/1.3.11/hand.min.js'></script>
@@ -52,31 +71,15 @@
     <script type='text/babel' src='jsx/HoldListView.jsx'></script>
     <script type='text/babel' src='jsx/WallView.jsx'></script>
     <script type='text/babel' src='jsx/WallListView.jsx'></script>
-    <script>
-        var engine = new CRUXER.Engine(document.getElementById('cruxer-canvas'));
-        engine.loadScene();
-        engine.run();
-
-        window.addEventListener("resize", function() {
-            this.engineResize();
-        }.bind(engine));
-
-        window.addEventListener("keypress", function(e) {
-            if (e.charCode === 96) {
-                this.engineDebug();
-            }
-        }.bind(engine));
-
+    <script th:inline="javascript" th:if="${id != null}">
+    /*<![CDATA[*/
+    engine.engineImport( /*[[${id}]]*/ );
+    /*]]>*/
     </script>
     <script type='text/babel'>
         ReactDOM.render(
-            <HoldListView header="Holds" engine={engine}/>,
-            document.getElementById('hold-list')
-        );
-        ReactDOM.render(
-            <WallListView header="Walls" engine={engine}/>,
-            document.getElementById('wall-list')
-            );
+        <HoldListView engine={engine}/>, document.getElementById('hold-list') ); ReactDOM.render(
+        <WallListView header="Walls" engine={engine}/>, document.getElementById('wall-list') );
     </script>
 </body>
 

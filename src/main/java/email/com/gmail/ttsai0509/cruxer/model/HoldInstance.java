@@ -24,35 +24,17 @@ public class HoldInstance {
     private Hold hold;
 
     @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float px;
+    @Embedded
+    @JsonView(HoldInstanceViews.Pose.class)
+    private Pose pose;
 
     @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float py;
-
-    @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float pz;
-
-    @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float qw;
-
-    @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float qx;
-
-    @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float qy;
-
-    @NotNull
-    @JsonView(HoldInstanceViews.Location.class)
-    private float qz;
+    @Embedded
+    @JsonView(HoldInstanceViews.Material.class)
+    private Material material;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonView(HoldInstanceViews.Route.class)
-    private Route route;
+    @JsonView(HoldInstanceViews.WallInstance.class)
+    private WallInstance wallInstance;
 
 }

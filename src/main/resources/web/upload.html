@@ -18,7 +18,16 @@
 <body>
     <div th:replace="header :: header"></div>
     <section>
-        <form id="hold-form">
+        <div style="width: 50%; margin: auto;">
+                Guidelines: (1) Currently only supports .obj files (does NOT support .mtl) (2) For consistency,
+                please set model scale to feet. (3) Thumbnails should be zoomed in as close as possible,
+                display the primary features of the model, and may not exceed 2MB.
+        </div>
+        <div style="width: 50%; margin: auto; font-weight: bold; padding-top: 10px;">
+                SORRY! Thumbnails currently a use right-handed coordinate system, but routesetting uses
+                a left-handed one.
+        </div>
+        <form id="hold-form" style="margin-bottom: 20px;">
             <fieldset>
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                 <input id="hold-file" name="file" type="file" autofocus required>
@@ -46,14 +55,17 @@
     <script>
     $(document).ready(function() {
 
-        var holdSubmit = $('#hold-submit');
-        var holdFile = $('#hold-file');
-        $("#hold-form").ajaxForm({
+        var holdForm = $('#hold-form'),
+            holdSubmit = $('#hold-submit'),
+            holdFile = $('#hold-file'),
+            holdThumb = $('#hold-thumb');
+
+        holdForm.ajaxForm({
             url: "holds",
             type: "post",
             dataType: "json",
             beforeSubmit: function(arr, $form, options) {
-                var data = document.getElementById('hold-thumb').toDataURL("image/jpeg", 1.0);
+                var data = holdThumb[0].toDataURL("image/jpeg", 1.0);
                 arr.push({
                     name: "thumbnail",
                     value: data
@@ -62,22 +74,30 @@
             success: function() {
                 holdSubmit.html("Uploaded.");
                 holdSubmit.prop("disabled", true);
-                holdFile.prop("disabled", true);
             },
             error: function() {
-                holdSubmit.html("Try Again?");
+                holdSubmit.html("Try Again.");
                 holdSubmit.blur();
             }
         });
+        THUMB.attach(holdThumb[0], holdFile[0],
+            function() {
+                holdSubmit.html("Upload Hold");
+                holdSubmit.prop("disabled", false);
+            }
+        );
 
-        var wallSubmit = $('#wall-submit');
-        var wallFile = $('#wall-file');
-        $("#wall-form").ajaxForm({
+        var wallForm = $('#wall-form'),
+            wallSubmit = $('#wall-submit'),
+            wallFile = $('#wall-file'),
+            wallThumb = $('#wall-thumb');
+
+        wallForm.ajaxForm({
             url: "walls",
             type: "post",
             dataType: "json",
             beforeSubmit: function(arr, $form, options) {
-                var data = document.getElementById('wall-thumb').toDataURL("image/jpeg", 1.0);
+                var data = wallThumb[0].toDataURL("image/jpeg", 1.0);
                 arr.push({
                     name: "thumbnail",
                     value: data
@@ -86,27 +106,16 @@
             success: function() {
                 wallSubmit.html("Uploaded.");
                 wallSubmit.prop("disabled", true);
-                wallFile.prop("disabled", true);
             },
             error: function() {
-                wallSubmit.html("Try Again?");
+                wallSubmit.html("Try Again.");
                 wallSubmit.blur();
             }
         });
-
-        THUMB.attach(
-            document.getElementById("hold-thumb"),
-            document.getElementById("hold-file"),
-            function () {
-                document.getElementById("hold-submit").disabled = false;
-            }
-        );
-
-        THUMB.attach(
-            document.getElementById("wall-thumb"),
-            document.getElementById("wall-file"),
-            function () {
-                document.getElementById("wall-submit").disabled = false;
+        THUMB.attach(wallThumb[0], wallFile[0],
+            function() {
+                wallSubmit.html("Upload Wall");
+                wallSubmit.prop("disabled", false);
             }
         );
     });

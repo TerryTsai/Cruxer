@@ -10,5 +10,5 @@ public interface HoldViews {
 
     interface Debug extends Id, Date, Model, Thumbnail, Account, AccountViews.Standard {}
 
-    interface Standard extends Id, Date, Model, Thumbnail {}
+    interface Standard extends Id, Date, Model, Thumbnail, Account, AccountViews.Username {}
 }

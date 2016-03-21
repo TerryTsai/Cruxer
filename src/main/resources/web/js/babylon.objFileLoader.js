@@ -549,7 +549,7 @@ var BABYLON;
                 else if (this.group.test(line) || this.obj.test(line)) {
                     //Create a new mesh corresponding to the name of the group.
                     //Definition of the mesh
-                    var objMesh = 
+                    var objMesh =
                     //Set the name of the current obj mesh
                     {
                         name: line.substring(2).trim(),
@@ -575,7 +575,7 @@ var BABYLON;
                         //Set the data for the previous mesh
                         addPreviousObjMesh();
                         //Create a new mesh
-                        var objMesh = 
+                        var objMesh =
                         //Set the name of the current obj mesh
                         {
                             name: objMeshName + "_mm" + increment.toString(),
@@ -676,7 +676,7 @@ var BABYLON;
             }
             //load the materials
             //Check if we have a file to load
-            if (fileToLoad !== "") {
+            if (false && fileToLoad !== "") {
                 //Load the file synchronously
                 this._loadMTL(fileToLoad, rootUrl, function (dataLoaded) {
                     //Create materials thanks MTLLoader function

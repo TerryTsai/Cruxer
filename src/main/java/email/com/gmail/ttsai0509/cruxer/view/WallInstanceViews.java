@@ -5,7 +5,11 @@ public interface WallInstanceViews {
 
     interface Wall {}
 
-    interface Location {}
+    interface Pose {}
+
+    interface Material {}
+
+    interface HoldInstances {}
 
     interface Route {}
 }

@@ -2,7 +2,7 @@ window.HoldListView = React.createClass({
 
     load: function(pg) {
         $.ajax({
-            url: "holds?size=8&page=" + pg,
+            url: "holds?size=20&page=" + pg,
             dataType: 'json',
             success: function(data) {
                 if (data && data.length > 0 && pg >= 0) {
@@ -34,19 +34,19 @@ window.HoldListView = React.createClass({
     render: function() {
         return (
             <div>
-                <div className='grid grid-pad'>
+                <div>
                     {
                         this.state.holds.map(function(hold) {
                             return <HoldView key={hold.id} hold={hold} engine={this.props.engine}/>;
                         }.bind(this))
                     }
                 </div>
-                <div className='grid grid-pad'>
-                    <div className='col-1-4 push-1-4 mobile-col-1-2'>
-                        <button className='content hold__button' onClick={this.prev} >Prev</button>
+                <div>
+                    <div className='w5-10 left'>
+                        <button className='hold__button border-box' onClick={this.prev} >Prev</button>
                     </div>
-                    <div className='col-1-4 mobile-col-1-2'>
-                        <button className='content hold__button' onClick={this.next} >Next</button>
+                    <div className='w5-10 left'>
+                        <button className='hold__button border-box' onClick={this.next} >Next</button>
                     </div>
                 </div>
             </div>

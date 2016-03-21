@@ -5,7 +5,8 @@ import org.junit.Test;
 /**
  * Simple utility class for exception assertions.
  * <pre>
- * {@code Assert.exception(AuthenticationCredentialsNotFoundException.class,
+ * {@code Assert.exception(
+ *      AuthenticationCredentialsNotFoundException.class,
  *      () -> holdRestController.getHold(hold.getId()),
  *      () -> holdRestController.deleteHold(hold.getId()),
  *      () -> holdRestController.postHold(file),

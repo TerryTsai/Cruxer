@@ -1,8 +1,6 @@
 package email.com.gmail.ttsai0509.cruxer.repository;
 
-import email.com.gmail.ttsai0509.cruxer.model.Account;
-import email.com.gmail.ttsai0509.cruxer.model.Rating;
-import email.com.gmail.ttsai0509.cruxer.model.Route;
+import email.com.gmail.ttsai0509.cruxer.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

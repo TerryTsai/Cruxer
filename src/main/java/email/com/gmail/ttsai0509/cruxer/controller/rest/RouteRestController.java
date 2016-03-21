@@ -53,12 +53,26 @@ public class RouteRestController {
 
     }
 
+    @JsonView(RouteViews.Complete.class)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public Route putRoute(@PathVariable String id) throws IOException {
+
+        Route route = routeRepo.findOne(id);
+        if (route == null)
+            throw new ResourceNotFoundException("");
+
+        Account account = accountService.getCurrentAccount();
+        if (account == null || !account.isOwnerOf(route))
+            throw new AccessDeniedException("");
+
+        throw new InternalException("Not yet implemented.");
+
+    }
+
     @Transactional
     @JsonView(RouteViews.Complete.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Route postRoute(
-            @RequestBody(required = true) Route route
-    ) throws IOException {
+    public Route postRoute(@RequestBody Route route) throws IOException {
 
         if(route.getWallInstances() == null || route.getWallInstances().size() < 1) {
             throw new CruxerException("No wall instances.");
@@ -101,24 +115,6 @@ public class RouteRestController {
         }
 
         return persistedRoute;
-    }
-
-    @JsonView(RouteViews.Complete.class)
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Route putRoute(
-            @PathVariable String id
-    ) throws IOException {
-
-        Route route = routeRepo.findOne(id);
-        if (route == null)
-            throw new ResourceNotFoundException("");
-
-        Account account = accountService.getCurrentAccount();
-        if (account == null || !account.isOwnerOf(route))
-            throw new AccessDeniedException("");
-
-        throw new InternalException("Not yet implemented.");
-
     }
 
 }

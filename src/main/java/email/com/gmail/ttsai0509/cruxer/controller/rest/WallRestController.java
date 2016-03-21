@@ -45,30 +45,6 @@ public class WallRestController {
     }
 
     @JsonView(WallViews.Standard.class)
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public Wall postWall(
-            @RequestParam MultipartFile file,
-            @RequestParam String thumbnail
-    ) {
-
-        Account account = accountService.getCurrentAccount();
-        if (account == null)
-            throw new AccessDeniedException("");
-
-        String model = fileService.saveFile(file, ".obj");
-        if (model == null || model.isEmpty())
-            throw new ResourceNotFoundException("");
-
-        String thumb = fileService.saveBase64(thumbnail, FileService.Base64DataType.JPEG);
-        if (thumb == null || thumb.isEmpty())
-            throw new ResourceNotFoundException("");
-
-        Wall wall = new Wall(account, model, thumb);
-        return wallRepo.save(wall);
-
-    }
-
-    @JsonView(WallViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Wall putWall(@PathVariable String id, @RequestParam MultipartFile file) {
 
@@ -85,6 +61,27 @@ public class WallRestController {
             throw new ResourceNotFoundException("");
 
         wall.setModel(model);
+        return wallRepo.save(wall);
+
+    }
+
+    @JsonView(WallViews.Standard.class)
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public Wall postWall(@RequestParam MultipartFile file, @RequestParam String thumbnail) {
+
+        Account account = accountService.getCurrentAccount();
+        if (account == null)
+            throw new AccessDeniedException("");
+
+        String model = fileService.saveFile(file, ".obj");
+        if (model == null || model.isEmpty())
+            throw new ResourceNotFoundException("");
+
+        String thumb = fileService.saveBase64(thumbnail, FileService.Base64DataType.JPEG);
+        if (thumb == null || thumb.isEmpty())
+            throw new ResourceNotFoundException("");
+
+        Wall wall = new Wall(account, model, thumb);
         return wallRepo.save(wall);
 
     }

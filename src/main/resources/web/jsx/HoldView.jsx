@@ -8,10 +8,22 @@
     };
 
     window.HoldView = React.createClass({
+        render: function() {
+            return (
+                <div className='w2-10 border-box left hold' onClick={handleClick.bind(this, this.props)}>
+                    <div className='hold__link__thumb'>
+                        <img src={this.props.hold.thumbnail}></img>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+    window.HoldView2 = React.createClass({
 
         render: function() {
             return (
-                <div className='col-1-4'>
+                <div className='w2-10 border-box left'>
                     <div className='content hold' onClick={handleClick.bind(this, this.props)}>
                         <div className='hold__link__thumb'>
                             <img src={this.props.hold.thumbnail}></img>

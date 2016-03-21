@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -66,6 +67,16 @@ public class AccountControllerTest {
         AssertEx.exception(
                 CruxerException.class,
                 () -> accountRestController.postAccount("jdoe05", "test", "test", "test", "user@guest.com")
+        );
+    }
+
+    @Test
+    public void authenticationEndpointsTest() {
+        AssertEx.exception(
+                AuthenticationCredentialsNotFoundException.class,
+                () -> accountRestController.getAccounts(null),
+                () -> accountRestController.getAccount(null),
+                () -> accountRestController.putAccount(null, null, null, null, null, null)
         );
     }
 
@@ -124,10 +135,6 @@ public class AccountControllerTest {
     public void putAccountCanUseExistingEmail() {
         Account expected = accountRestController.putAccount(account1.getId(), "1", "2", "3", "4", "five@example.com");
         Account actual = accountRepository.findOne(account1.getId());
-        Assert.assertTrue(expected.matches(actual));
-
-        expected = Account.createAccount("1", "2", "3", "4", "five@example.com");
-        expected.setId(account1.getId());
         Assert.assertTrue(expected.matches(actual));
     }
 

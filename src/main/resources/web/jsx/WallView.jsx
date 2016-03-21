@@ -11,6 +11,20 @@
 
         render: function() {
             return (
+                <div className='w2-10 border-box left wall' onClick={handleClick.bind(this, this.props)}>
+                    <div className='wall__link__thumb'>
+                        <img src={this.props.wall.thumbnail}></img>
+                    </div>
+                </div>
+            );
+        }
+
+    });
+
+    window.WallView2 = React.createClass({
+
+        render: function() {
+            return (
                 <div className='col-1-4'>
                     <div className='content wall' onClick={handleClick.bind(this, this.props)}>
                         <div className='wall__link__thumb'>

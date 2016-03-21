@@ -2,7 +2,7 @@ window.WallListView = React.createClass({
 
     load: function(pg) {
         $.ajax({
-            url: "walls?size=8&page=" + pg,
+            url: "walls?size=20&page=" + pg,
             dataType: 'json',
             success: function(data) {
                 if (data && data.length > 0 && pg >= 0) {
@@ -34,19 +34,19 @@ window.WallListView = React.createClass({
     render: function() {
         return (
             <div>
-                <div className='grid grid-pad'>
+                <div>
                     {
                         this.state.walls.map(function(wall) {
                             return <WallView key={wall.id} wall={wall} engine={this.props.engine}/>;
                         }.bind(this))
                     }
                 </div>
-                <div className='grid grid-pad'>
-                    <div className='col-1-4 push-1-4 mobile-col-1-2'>
-                        <button className='content wall__button' onClick={this.prev} >Prev</button>
+                <div>
+                    <div className='w5-10 left'>
+                        <button className='wall__button border-box' onClick={this.prev} >Prev</button>
                     </div>
-                    <div className='col-1-4 mobile-col-1-2'>
-                        <button className='content wall__button' onClick={this.next} >Next</button>
+                    <div className='w5-10 left'>
+                        <button className='wall__button border-box' onClick={this.next} >Next</button>
                     </div>
                 </div>
             </div>

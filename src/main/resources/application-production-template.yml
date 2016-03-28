@@ -1,0 +1,28 @@
+# Templates Served From Classpath
+spring.thymeleaf:
+    prefix: classpath:/web/
+
+# Database Hosted On Heroku
+spring.datasource:
+  url: jdbc:postgresql://#####
+  username: #####
+  password: #####
+  driver-class-name: org.postgresql.Driver
+
+# Files Stored On AWS S3
+upload.file:
+  url: #####
+  bucket: cruxer
+  charset: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
+  length: 25
+  accessKey: #####
+  secretKey: #####
+
+# Hibernate PostgreSQL Dialect
+spring.jpa.properties.hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Gmail Account Information
+spring.mail:
+  username: #####
+  password: #####

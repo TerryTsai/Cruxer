@@ -32,7 +32,11 @@ public class CommentRestController {
 
     @JsonView(CommentViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Comment> getComments(@RequestParam String type, @RequestParam String id, Pageable pageable) {
+    public List<Comment> getComments(
+            @RequestParam String type,
+            @RequestParam String id,
+            Pageable pageable
+    ) {
 
         switch (type) {
             case "route":
@@ -64,7 +68,10 @@ public class CommentRestController {
 
     @JsonView(CommentViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Comment putComment(@PathVariable("id") String id, @RequestParam String comment) {
+    public Comment putComment(
+            @PathVariable("id") String id,
+            @RequestParam String comment
+    ) {
 
         Comment commentObj = commentRepo.getOne(id);
 
@@ -81,7 +88,11 @@ public class CommentRestController {
 
     @JsonView(CommentViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Comment postComment(@RequestParam String type, @RequestParam String id, @RequestParam String comment) {
+    public Comment postComment(
+            @RequestParam String type,
+            @RequestParam String id,
+            @RequestParam String comment
+    ) {
 
         Account account = accountService.getCurrentAccount();
         if (account == null)
@@ -114,7 +125,9 @@ public class CommentRestController {
 
     @JsonView(CommentViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Boolean deleteComment(@PathVariable("id") String id) {
+    public Boolean deleteComment(
+            @PathVariable("id") String id
+    ) {
         Comment comment = commentRepo.getOne(id);
 
         Account account = accountService.getCurrentAccount();

@@ -98,10 +98,6 @@ public class Account {
         return getId().equals(comment.getAccount().getId());
     }
 
-    public boolean isOwnerOf(Rating rating) {
-        return getId().equals(rating.getAccount().getId());
-    }
-
     public User toUser() {
         return new User(username, hashword, roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.toString()))

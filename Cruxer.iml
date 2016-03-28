@@ -127,13 +127,10 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm:5.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jayway.restassured:rest-assured:2.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.groovy:groovy-xml:2.4.4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpclient:4.5.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpmime:4.5.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.ccil.cowan.tagsoup:tagsoup:1.2.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jayway.restassured:json-path:2.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jayway.restassured:xml-path:2.8.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.groovy:groovy-json:2.4.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jayway.restassured:rest-assured-common:2.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-lang3:3.3.2" level="project" />
@@ -142,13 +139,13 @@
     <orderEntry type="library" exported="" name="Gradle: com.google.guava:guava:16.0.1" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context-support:4.2.3.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax.mail:javax.mail-api:1.5.5" level="project" />
-    <orderEntry type="library" name="angular" level="application" />
-    <orderEntry type="library" name="foundation" level="application" />
-    <orderEntry type="library" name="html5" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="jquery.unveil" level="application" />
-    <orderEntry type="library" name="moment" level="application" />
-    <orderEntry type="library" name="browser" level="application" />
-    <orderEntry type="library" name="hand" level="application" />
+    <orderEntry type="library" exported="" name="Gradle: com.amazonaws:aws-java-sdk-s3:1.10.62" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.amazonaws:aws-java-sdk-kms:1.10.62" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: com.amazonaws:aws-java-sdk-core:1.10.62" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpclient:4.5.1" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: joda-time:joda-time:2.8.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.apache.httpcomponents:httpcore:4.4.4" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
   </component>
 </module>

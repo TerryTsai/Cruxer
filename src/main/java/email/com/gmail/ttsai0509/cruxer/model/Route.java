@@ -15,12 +15,19 @@ public class Route {
 
     public Route() {}
 
-    public static Route createRoute(String name, String thumbnail, Account account, List<WallInstance> wallInstances) {
+    public static Route createRoute(
+            String name,
+            String thumbnail,
+            Account account,
+            List<WallInstance> wallInstances,
+            Grade grade
+    ) {
         Route route = new Route();
         route.setName(name);
         route.setThumbnail(thumbnail);
         route.setAccount(account);
         route.setWallInstances(wallInstances);
+        route.setGrade(grade);
         route.setDate(new Date());
         return route;
     }
@@ -46,6 +53,11 @@ public class Route {
 
     @JsonView(RouteViews.Thumbnail.class)
     private String thumbnail;
+
+    @JoinColumn(nullable = false)
+    @Enumerated(value = EnumType.ORDINAL)
+    @JsonView(RouteViews.Grade.class)
+    private Grade grade;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
     @JsonView(RouteViews.WallInstances.class)

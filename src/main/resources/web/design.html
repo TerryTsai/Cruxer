@@ -7,100 +7,155 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <meta name='description' content='Cruxer - Social Routesetting'>
     <meta name='author' content='Terry Tsai'>
-    <meta name='_csrf' th:content='${_csrf.token}' />
-    <meta name='_csrf_header' th:content='${_csrf.headerName}' />
+    <meta name='_csrf' th:content='${_csrf.token}'/>
+    <meta name='_csrf_header' th:content='${_csrf.headerName}'/>
     <title>Cruxer</title>
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Lato'>
     <link rel='stylesheet' type='text/css' href='css/reset.css'>
     <link rel='stylesheet' type='text/css' href='css/common.css'>
-    <link rel='stylesheet' type='text/css' href='css/cruxer.css'>
-    <link rel='stylesheet' type='text/css' href='css/simplegrid.css'>
     <link rel='stylesheet' type='text/css' href='css/spectrum.css'>
     <link rel="stylesheet" type='text/css' href="css/jquery-ui.min.css">
+    <link rel='stylesheet' type='text/css' href='css/cruxer.css'>
 </head>
 
 <body>
-    <div th:replace='header :: header'></div>
-    <section class='border-box pad-20'>
+<div th:replace='header :: header'></div>
+<section class='border-box pad-20'>
 
-        <div class='w7-10 border-box left'>
-            <canvas class='cruxer-canvas' id='cruxer-canvas'>
-            </canvas>
+    <div class='w7-10 border-box left'>
+        <canvas class='cruxer-canvas' id='cruxer-canvas'>
+        </canvas>
+    </div>
+
+    <div class='w3-10 border-box left'>
+        <input id='cruxer-color' type='text' class='w2-10 left border-box'/>
+        <img id='cruxer-select' class='w5-10 left border-box' src=""/>
+        <button id='cruxer-delete' class='w2-10 left border-box'>Delete</button>
+    </div>
+
+    <div class='w3-10 border-box left' id="tabs">
+        <ul>
+            <li><a href="#route-tab">Route</a></li>
+            <li><a href="#walls-tab">Walls</a></li>
+            <li><a href="#holds-tab">Holds</a></li>
+        </ul>
+        <div id="route-tab">
+            <input id="route-name" type="text" style="text-align: left" placeholder="Name" required/>
+            <select id="route-grade" name="grade" required>
+                <option value="V0">V0</option>
+                <option value="V1">V1</option>
+                <option value="V2">V2</option>
+                <option value="V3">V3</option>
+                <option value="V4">V4</option>
+                <option value="V5">V5</option>
+                <option value="V6">V6</option>
+                <option value="V7">V7</option>
+                <option value="V8">V8</option>
+                <option value="V9">V9</option>
+                <option value="V10">V10</option>
+                <option value="V11">V11</option>
+                <option value="V12">V12</option>
+                <option value="V13">V13</option>
+                <option value="V14">V14</option>
+                <option value="V15">V15</option>
+            </select>
+            <button id="route-submit">Submit</button>
         </div>
-
-        <div class='w3-10 border-box left'>
-            <input id='cruxer-color' type='text' class='w2-10 left'></input>
-            <button id='cruxer-save' class='w2-10 right'>Save</button>
-            <button id='cruxer-delete' class='w2-10 right'>Delete</button>
+        <div id="walls-tab">
+            <div id='wall-list'></div>
         </div>
-
-        <div class='w3-10 border-box left' id="tabs">
-            <ul>
-                <li><a href="#walls-tab">Walls</a></li>
-                <li><a href="#holds-tab">Holds</a></li>
-            </ul>
-            <div id="walls-tab">
-                <div id='wall-list'></div>
-            </div>
-            <div id="holds-tab">
-                <div id='hold-list'></div>
-            </div>
+        <div id="holds-tab">
+            <div id='hold-list'></div>
         </div>
+    </div>
 
-        <div class='w1-1' th:if='${id != null}'>
-            <form style='width: 400px' id='comment-form'>
-                <fieldset>
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    <input type='hidden' name='id' th:value='${id}' />
-                    <input type='hidden' name='type' value='route' />
-                    <input type='text' name='comment' placeholder='Comment' />
-                    <button id="submit" type="submit">Submit</button>
-                </fieldset>
-            </form>
-            <div style='width: 400px' id='comment-list'></div>
-        </div>
+    <div class='w1-1' th:if='${route != null}'>
+        <form style='width: 400px' id='comment-form'>
+            <fieldset>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <input type='hidden' name='id' th:value='${route.id}'/>
+                <input type='hidden' name='type' value='route'/>
+                <input type='text' name='comment' placeholder='Comment'/>
+                <button id="submit" type="submit">Submit</button>
+            </fieldset>
+        </form>
+        <div style='width: 400px' id='comment-list'></div>
+    </div>
 
-    </section>
-    <!-- Jquery -->
-    <script src='js/jquery-2.2.1.min.js'></script>
-    <script src='js/jquery.mousewheel.min.js'></script>
-    <script src="js/jquery.form.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src='js/moment.min.js'></script>
-    <!-- ReactJS -->
-    <script src='js/react.min.js'></script>
-    <script src='js/react-dom.min.js'></script>
-    <script src='js/browser.min.js'></script>
-    <!-- Spectrum -->
-    <script src='js/spectrum.js'></script>
-    <!-- Babylon -->
-    <script src='js/babylon.js'></script>
-    <script src='js/hand.min.js'></script>
-    <script src='js/babylon.objFileLoader.js'></script>
-    <script src='js/customJoystick.js'></script>
-    <script src='js/customJoystickCamera.js'></script>
-    <script src='js/cruxer.js'></script>
-    <script type='text/babel' src='jsx/HoldView.jsx'></script>
-    <script type='text/babel' src='jsx/HoldListView.jsx'></script>
-    <script type='text/babel' src='jsx/WallView.jsx'></script>
-    <script type='text/babel' src='jsx/WallListView.jsx'></script>
-    <script type='text/babel' src='jsx/CommentView.jsx'></script>
-    <script type='text/babel' src='jsx/CommentListView.jsx'></script>
-    <script type='text/babel'>
-        ReactDOM.render(
-        <HoldListView engine={engine}/>, document.getElementById('hold-list') ); ReactDOM.render(
-        <WallListView engine={engine}/>, document.getElementById('wall-list') ); $('#tabs').tabs();
-    </script>
-    <script th:inline='javascript' th:if='${id != null}'>
+</section>
+<!-- Jquery -->
+<script src='js/jquery-2.2.1.min.js'></script>
+<script src='js/jquery.mousewheel.min.js'></script>
+<script src="js/jquery.form.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src='js/moment.min.js'></script>
+<!-- ReactJS -->
+<script src='js/react.min.js'></script>
+<script src='js/react-dom.min.js'></script>
+<script src='js/browser.min.js'></script>
+<!-- Spectrum -->
+<script src='js/spectrum.js'></script>
+<!-- Babylon -->
+<script src='js/babylon.js'></script>
+<script src='js/hand.min.js'></script>
+<script src='js/babylon.objFileLoader.js'></script>
+<script src='js/customJoystick.js'></script>
+<script src='js/customJoystickCamera.js'></script>
+<script src='js/cruxer.js'></script>
+<script type='text/babel' src='jsx/HoldView.jsx'></script>
+<script type='text/babel' src='jsx/HoldListView.jsx'></script>
+<script type='text/babel' src='jsx/WallView.jsx'></script>
+<script type='text/babel' src='jsx/WallListView.jsx'></script>
+<script type='text/babel' src='jsx/CommentView.jsx'></script>
+<script type='text/babel' src='jsx/CommentListView.jsx'></script>
+<script>
+    $('#tabs').tabs();
+    $('#route-submit').click(function () {
+        engine.engineExport($('#route-name').val(), $('#route-grade').val());
+    });
+    var imgCallback = function(imgUrl) {
+        $('#cruxer-select').attr('src', imgUrl);
+    };
+</script>
+<script type='text/babel'>
+    ReactDOM.render(
+        <HoldListView engine={engine} onSelect={imgCallback}/>,
+        document.getElementById('hold-list')
+    );
+    ReactDOM.render(
+        <WallListView engine={engine} onSelect={imgCallback}/>,
+        document.getElementById('wall-list')
+    );
+
+</script>
+<script th:inline='javascript' th:if='${route != null}'>
     /*<![CDATA[*/
-    var id = /*[[${id}]]*/ ;
-    engine.engineImport(id);
+    var id = /*[[${route.id}]]*/;
+    engine.engineImport(/*[[${route.id}]]*/);
+    $('#route-name').val(/*[[${route.name}]]*/).prop('disabled', true);
+    $('#route-grade').val(/*[[${route.grade.name()}]]*/).prop('disabled', true);
+    $('#route-submit').prop('disabled', true).hide();
     /*]]>*/
-    </script>
-    <script type='text/babel' th:if='${id != null}'>
-        var commentList = ReactDOM.render(
-        <CommentListView routeId={id}/>, document.getElementById('comment-list') ); $('#comment-form').ajaxForm({ url: "comments", type: "post", dataType: "json", success: function(r) { commentList.load(commentList.state.pg); }, error: function(r) { console.log(r); } });
-    </script>
+</script>
+<script type='text/babel' th:if='${route != null}'>
+    var commentList = ReactDOM.render(
+        <CommentListView routeId={id}/>,
+        document.getElementById('comment-list')
+    );
+
+    $('#comment-form').ajaxForm({
+        url: "comments",
+        type: "post",
+        dataType: "json",
+        success: function(r) {
+            commentList.load(commentList.state.pg);
+        },
+        error: function(r) {
+            console.log(r);
+        }
+    });
+
+</script>
 </body>
 
 </html>

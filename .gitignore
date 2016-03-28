@@ -1,0 +1,13 @@
+# File Types
+*.class
+*.ini
+
+
+# Folders
+archive/
+files/
+gradle/
+
+
+# Production Properties
+application-production.yml

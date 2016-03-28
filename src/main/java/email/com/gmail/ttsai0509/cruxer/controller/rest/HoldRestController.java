@@ -6,6 +6,7 @@ import email.com.gmail.ttsai0509.cruxer.model.Hold;
 import email.com.gmail.ttsai0509.cruxer.repository.HoldRepository;
 import email.com.gmail.ttsai0509.cruxer.service.AccountService;
 import email.com.gmail.ttsai0509.cruxer.service.FileService;
+import email.com.gmail.ttsai0509.cruxer.service.LocalFileService;
 import email.com.gmail.ttsai0509.cruxer.view.HoldViews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,9 @@ public class HoldRestController {
 
     @JsonView(HoldViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Hold> getHolds(Pageable pageable) {
+    public List<Hold> getHolds(
+            Pageable pageable
+    ) {
 
         return holdRepo.findAll(pageable).getContent();
 
@@ -38,7 +41,9 @@ public class HoldRestController {
 
     @JsonView(HoldViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Hold getHold(@PathVariable String id) {
+    public Hold getHold(
+            @PathVariable String id
+    ) {
 
         return holdRepo.findOne(id);
 
@@ -46,7 +51,10 @@ public class HoldRestController {
 
     @JsonView(HoldViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Hold putHold(@PathVariable String id, @RequestParam MultipartFile file) {
+    public Hold putHold(
+            @PathVariable String id,
+            @RequestParam MultipartFile file
+    ) {
 
         Hold hold = holdRepo.findOne(id);
         if (hold == null)
@@ -67,7 +75,10 @@ public class HoldRestController {
 
     @JsonView(HoldViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Hold postHold(@RequestParam MultipartFile file, @RequestParam String thumbnail) {
+    public Hold postHold(
+            @RequestParam MultipartFile file,
+            @RequestParam String thumbnail
+    ) {
 
         Account account = accountService.getCurrentAccount();
         if (account == null)
@@ -77,7 +88,7 @@ public class HoldRestController {
         if (model == null || model.isEmpty())
             throw new ResourceNotFoundException("");
 
-        String thumb = fileService.saveBase64(thumbnail, FileService.Base64DataType.JPEG);
+        String thumb = fileService.saveBase64(thumbnail, LocalFileService.Base64DataType.JPEG);
         if (thumb == null || thumb.isEmpty())
             throw new ResourceNotFoundException("");
 

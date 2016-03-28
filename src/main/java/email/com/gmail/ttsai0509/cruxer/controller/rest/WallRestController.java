@@ -6,6 +6,7 @@ import email.com.gmail.ttsai0509.cruxer.model.Wall;
 import email.com.gmail.ttsai0509.cruxer.repository.WallRepository;
 import email.com.gmail.ttsai0509.cruxer.service.AccountService;
 import email.com.gmail.ttsai0509.cruxer.service.FileService;
+import email.com.gmail.ttsai0509.cruxer.service.LocalFileService;
 import email.com.gmail.ttsai0509.cruxer.view.WallViews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +31,9 @@ public class WallRestController {
 
     @JsonView(WallViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Wall> getWalls(Pageable pageable) {
+    public List<Wall> getWalls(
+            Pageable pageable
+    ) {
 
         return wallRepo.findAll(pageable).getContent();
 
@@ -38,7 +41,9 @@ public class WallRestController {
 
     @JsonView(WallViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Wall getWall(@PathVariable String id) {
+    public Wall getWall(
+            @PathVariable String id
+    ) {
 
         return wallRepo.findOne(id);
 
@@ -46,7 +51,10 @@ public class WallRestController {
 
     @JsonView(WallViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Wall putWall(@PathVariable String id, @RequestParam MultipartFile file) {
+    public Wall putWall(
+            @PathVariable String id,
+            @RequestParam MultipartFile file
+    ) {
 
         Wall wall = wallRepo.findOne(id);
         if (wall == null)
@@ -67,7 +75,10 @@ public class WallRestController {
 
     @JsonView(WallViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Wall postWall(@RequestParam MultipartFile file, @RequestParam String thumbnail) {
+    public Wall postWall(
+            @RequestParam MultipartFile file,
+            @RequestParam String thumbnail
+    ) {
 
         Account account = accountService.getCurrentAccount();
         if (account == null)
@@ -77,7 +88,7 @@ public class WallRestController {
         if (model == null || model.isEmpty())
             throw new ResourceNotFoundException("");
 
-        String thumb = fileService.saveBase64(thumbnail, FileService.Base64DataType.JPEG);
+        String thumb = fileService.saveBase64(thumbnail, LocalFileService.Base64DataType.JPEG);
         if (thumb == null || thumb.isEmpty())
             throw new ResourceNotFoundException("");
 

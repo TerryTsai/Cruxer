@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta name='description' content='Cruxer - Social Routesetting'>
+    <meta name='author' content='Terry Tsai'>
+    <title>Cruxer</title>
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Lato'>
+    <link rel='stylesheet' type='text/css' href='css/reset.css'>
+    <link rel='stylesheet' type='text/css' href='css/common.css'>
+    <link rel='stylesheet' type='text/css' href='css/cruxer.css'>
+</head>
+
+<body>
+    <div th:replace="header :: header"></div>
+    <section th:if="${account != null}">
+    <ul>
+    <li th:text="'Username : ' + ${account.username}"></li>
+    <li th:text="'First Name : ' + ${account.firstname}"></li>
+    <li th:text="'Last Name : ' + ${account.lastname}"></li>
+    <li th:text="'Email : ' + ${account.email}"></li>
+    </ul>
+    <div id="route-list"></div>
+    <div id="hold-list"></div>
+    <div id="wall-list"></div>
+    </section>
+    <script src="js/jquery-2.2.1.min.js"></script>
+    <script src="js/jquery.form.min.js"></script>
+    <!-- ReactJS -->
+    <script src='js/react.min.js'></script>
+    <script src='js/react-dom.min.js'></script>
+    <script src="js/browser.min.js"></script>
+    <script type='text/babel' src='jsx/HoldView.jsx'></script>
+    <script type='text/babel' src='jsx/HoldListView.jsx'></script>
+    <script type='text/babel' src='jsx/WallView.jsx'></script>
+    <script type='text/babel' src='jsx/WallListView.jsx'></script>
+    <!--
+    <script type='text/babel'>
+        ReactDOM.render(
+            <HoldListView header="Holds"/>,
+            document.getElementById('hold-list')
+        );
+        ReactDOM.render(
+            <WallListView header="Walls"/>,
+            document.getElementById('wall-list')
+        );
+        ReactDOM.render(
+            <RouteListView header="Routes"/>,
+            document.getElementById('route-list')
+        );
+    </script>
+    -->
+
+</body>
+
+</html>

@@ -4,6 +4,7 @@
         if (props.engine) {
             props.engine._id = props.hold.id;
             props.engine._type = "holds";
+            props.onSelect(props.hold.thumbnail);
         }
     };
 
@@ -14,31 +15,15 @@
                     <div className='hold__link__thumb'>
                         <img src={this.props.hold.thumbnail}></img>
                     </div>
-                </div>
-            );
-        }
-    });
-
-    window.HoldView2 = React.createClass({
-
-        render: function() {
-            return (
-                <div className='w2-10 border-box left'>
-                    <div className='content hold' onClick={handleClick.bind(this, this.props)}>
-                        <div className='hold__link__thumb'>
-                            <img src={this.props.hold.thumbnail}></img>
-                        </div>
-                        <div className='hold__link__info'>
+                    <div className='hold__link__info'>
                             {this.props.hold.account.username}
-                        </div>
-                        <div className="hold__link__date">
+                    </div>
+                    <div className="hold__link__date">
                             {moment(this.props.hold.date).fromNow()}
-                        </div>
                     </div>
                 </div>
             );
         }
-
     });
 
 }(window));

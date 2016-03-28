@@ -2,7 +2,7 @@ package email.com.gmail.ttsai0509.cruxer.service;
 
 import email.com.gmail.ttsai0509.cruxer.Cruxer;
 import email.com.gmail.ttsai0509.cruxer.config.SecurityConfig;
-import email.com.gmail.ttsai0509.cruxer.config.production.WebMvcConfig;
+import email.com.gmail.ttsai0509.cruxer.config.ProdWebConfig;
 import email.com.gmail.ttsai0509.cruxer.model.Role;
 import email.com.gmail.ttsai0509.cruxer.model.Account;
 import email.com.gmail.ttsai0509.cruxer.repository.AccountRepository;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {Cruxer.class, SecurityConfig.class, WebMvcConfig.class})
+@SpringApplicationConfiguration(classes = {Cruxer.class, SecurityConfig.class, ProdWebConfig.class})
 @WebAppConfiguration
 public class AccountServiceTest {
 

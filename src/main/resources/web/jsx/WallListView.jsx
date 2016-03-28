@@ -37,7 +37,12 @@ window.WallListView = React.createClass({
                 <div>
                     {
                         this.state.walls.map(function(wall) {
-                            return <WallView key={wall.id} wall={wall} engine={this.props.engine}/>;
+                            return <WallView
+                                key={wall.id}
+                                wall={wall}
+                                engine={this.props.engine}
+                                onSelect={this.props.onSelect}
+                            />;
                         }.bind(this))
                     }
                 </div>

@@ -7,13 +7,15 @@ public interface RouteViews {
 
     interface Name {}
 
+    interface Grade {}
+
     interface Account {}
 
     interface Thumbnail {}
 
     interface WallInstances {}
 
-    interface Complete extends Id, Name, Date, Thumbnail,
+    interface Complete extends Id, Name, Date, Grade, Thumbnail,
             Account, AccountViews.Id, AccountViews.Username,
             WallInstances, WallInstanceViews.Id, WallInstanceViews.Pose, WallInstanceViews.Material,
             WallInstanceViews.Wall, WallViews.Id, WallViews.Model,
@@ -21,5 +23,5 @@ public interface RouteViews {
             HoldInstanceViews.Hold, HoldViews.Id, HoldViews.Model,
             PoseViews.Pose, MaterialViews.Material {}
 
-    interface Details extends Id, Name, Date, Account, Thumbnail, AccountViews.Id, AccountViews.Username {}
+    interface Details extends Id, Name, Date, Grade, Account, Thumbnail, AccountViews.Id, AccountViews.Username {}
 }

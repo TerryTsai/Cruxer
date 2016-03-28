@@ -1,0 +1,325 @@
+/*********************
+ * TABLE OF CONTENTS *
+ *********************
+ @1 Top Navigation
+ @2 Canvas
+ @3 Comment
+ @4 Hold
+ @5 Wall
+ @6 Route
+ @7 Spectrum
+
+**********************/
+
+@media only screen and (min-width: 768px) {
+    body { margin: 0 30px; }
+}
+
+@media only screen and (max-width: 767px) {
+    body { margin: 0 5px; }
+}
+
+/* @1 Top Navigation */
+.top-nav {
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.top-nav__link {
+    color: #333;
+    padding: 2px 20px;
+}
+
+.top-nav__link:hover, .top-nav__link:focus {
+    background-color: #333;
+    color: #ddd;
+    outline: none;
+    transition: background-color .3s, color .3s;
+}
+
+/* @2 Canvas */
+.cruxer-canvas {
+    touch-action: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 4px;
+    border: 1px solid black;
+}
+
+.thumb-canvas {
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+/* @3 Comment */
+.comment {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #c2c2c2;
+}
+
+.comment:hover {
+
+    opacity: 0.9;
+}
+
+.comment__text {
+    padding: 2px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #444;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comment__date {
+    padding: 2px;
+    font-size: 0.8em;
+    color: #888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comment__button {
+    text-align: center;
+    border: 1px solid #c2c2c2;
+}
+
+/* @4 Hold */
+.hold {
+
+    border: 1px solid #c2c2c2;
+}
+
+.hold:hover {
+
+    opacity: 0.8;
+}
+
+.hold__link__info {
+    padding: 2px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #444;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hold__link__thumb {
+
+    text-align: center;
+}
+
+.hold__link__date {
+    padding: 2px;
+    font-size: 0.8em;
+    color: #888;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hold__button {
+    text-align: center;
+    border: 1px solid #c2c2c2;
+}
+
+/* @5 Wall */
+.wall {
+    border: 1px solid #c2c2c2;
+    margin-bottom: 20px;
+}
+
+.wall:hover {
+
+    opacity: 0.8;
+}
+
+.wall__link__info {
+    padding: 2px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #444;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wall__link__thumb {
+
+    text-align: center;
+}
+
+.wall__link__date {
+    padding: 2px;
+    font-size: 0.8em;
+    color: #888;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wall__button {
+    text-align: center;
+    border: 1px solid #c2c2c2;
+}
+
+/* @6 Route */
+.route {
+    border: 1px solid #c2c2c2;
+    margin-bottom: 20px;
+}
+
+.route:hover {
+
+    opacity: 0.8;
+}
+
+.route__link__info {
+    padding: 2px;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #444;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.route__link__thumb {
+
+    text-align: center;
+}
+
+.route__link__date {
+    padding: 2px;
+    font-size: 0.8em;
+    color: #888;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.route__button {
+    text-align: center;
+    border: 1px solid #c2c2c2;
+}
+
+/* @7 Spectrum */
+.sp-container {
+
+    border: solid 1px green;
+}
+
+.sp-replacer, .sp-replacer:hover, .sp-replacer.sp-active {
+    width: 100px;
+    height: 1.8em;
+    border: solid 1px black;
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin: 0;
+}
+
+.sp-top {
+    border: solid 0;
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin: 0;
+}
+
+.sp-preview {
+    width: 100px;
+    height: 1.8em;
+    border: solid 0;
+    background: rgba(0, 0, 0, 0);
+    padding: 0;
+    margin: 0;
+}
+
+.sp-dd, .sp-cancel, .sp-choose {
+
+    display: none;
+}
+
+/* TO BE REFACTORED */
+img {
+    max-width:100%;
+    max-height:100%;
+}
+
+section {
+    padding: 30px 0;
+}
+
+footer {
+    border-top: 1px solid black;
+}
+
+fieldset {
+    font-family: 'Lato', sans-serif;
+}
+
+form {
+    width: 300px;
+    padding: 0 20px;
+    margin: auto;
+}
+
+input, button, select {
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0 solid;
+    border-bottom: 1px solid #999;
+    font-size: 1.4em;
+    outline: none;
+    padding: 2px 0;
+    text-align: center;
+    width: 100%;
+}
+
+label {
+    margin-top: 10px;
+    display: block;
+    color: #999;
+    background-color: transparent;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    font-size: 1.4em;
+    padding: 2px 0;
+    text-align: center;
+    width: 100%;
+}
+
+input, select {
+    color: #999;
+}
+
+button:not([disabled]):hover {
+    background-color: #333;
+    color: #ddd;
+    transition: background-color .3s, color .3s;
+}
+
+option {
+    text-align: center;
+}
+
+button:disabled {
+    border: 0 solid;
+}

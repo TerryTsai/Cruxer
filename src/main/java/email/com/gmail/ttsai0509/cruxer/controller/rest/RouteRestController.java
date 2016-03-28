@@ -10,6 +10,7 @@ import email.com.gmail.ttsai0509.cruxer.model.WallInstance;
 import email.com.gmail.ttsai0509.cruxer.repository.*;
 import email.com.gmail.ttsai0509.cruxer.service.AccountService;
 import email.com.gmail.ttsai0509.cruxer.service.FileService;
+import email.com.gmail.ttsai0509.cruxer.service.LocalFileService;
 import email.com.gmail.ttsai0509.cruxer.view.RouteViews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,9 @@ public class RouteRestController {
 
     @JsonView(RouteViews.Details.class)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Route> getRoutes(Pageable pageable) {
+    public List<Route> getRoutes(
+            Pageable pageable
+    ) {
 
         return routeRepo.findAll(pageable).getContent();
 
@@ -47,7 +50,9 @@ public class RouteRestController {
 
     @JsonView(RouteViews.Complete.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Route getRoute(@PathVariable("id") String id) {
+    public Route getRoute(
+            @PathVariable("id") String id
+    ) {
 
         return routeRepo.findOne(id);
 
@@ -55,7 +60,9 @@ public class RouteRestController {
 
     @JsonView(RouteViews.Complete.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Route putRoute(@PathVariable String id) throws IOException {
+    public Route putRoute(
+            @PathVariable String id
+    ) throws IOException {
 
         Route route = routeRepo.findOne(id);
         if (route == null)
@@ -72,7 +79,9 @@ public class RouteRestController {
     @Transactional
     @JsonView(RouteViews.Complete.class)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Route postRoute(@RequestBody Route route) throws IOException {
+    public Route postRoute(
+            @RequestBody Route route
+    ) throws IOException {
 
         if(route.getWallInstances() == null || route.getWallInstances().size() < 1) {
             throw new CruxerException("No wall instances.");
@@ -90,7 +99,7 @@ public class RouteRestController {
             }
         }
 
-        String thumbnail = fileService.saveBase64(route.getThumbnailRaw(), FileService.Base64DataType.PNG);
+        String thumbnail = fileService.saveBase64(route.getThumbnailRaw(), LocalFileService.Base64DataType.PNG);
         if (thumbnail == null || thumbnail.isEmpty())
             throw new ResourceNotFoundException("");
         route.setThumbnail(thumbnail);
@@ -99,7 +108,13 @@ public class RouteRestController {
         if (account == null)
             throw new AccessDeniedException("");
 
-        Route persistedRoute = Route.createRoute(route.getName(), thumbnail, account, route.getWallInstances());
+        Route persistedRoute = Route.createRoute(
+                route.getName(),
+                thumbnail,
+                account,
+                route.getWallInstances(),
+                route.getGrade()
+        );
         routeRepo.save(persistedRoute);
 
         for (WallInstance wallInstance : route.getWallInstances()) {

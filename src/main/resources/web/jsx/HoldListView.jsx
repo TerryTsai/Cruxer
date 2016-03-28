@@ -1,45 +1,50 @@
 window.HoldListView = React.createClass({
 
-    load: function(pg) {
+    load: function (pg) {
         $.ajax({
             url: "holds?size=20&page=" + pg,
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 if (data && data.length > 0 && pg >= 0) {
-                   this.setState({holds: data, page: pg});
+                    this.setState({holds: data, page: pg});
                 }
             }.bind(this)
         });
     },
 
-    next: function() {
+    next: function () {
         this.load(this.state.page + 1);
     },
 
-    prev: function() {
+    prev: function () {
         this.load(this.state.page - 1);
     },
 
-    getInitialState: function() {
+    getInitialState: function () {
         return {
-            holds : [],
-            pg : 0
+            holds: [],
+            pg: 0
         };
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         this.load(0);
     },
 
-    render: function() {
+    render: function () {
         return (
             <div>
                 <div>
                     {
-                        this.state.holds.map(function(hold) {
-                            return <HoldView key={hold.id} hold={hold} engine={this.props.engine}/>;
+                        this.state.holds.map(function (hold) {
+                            return <HoldView
+                                key={hold.id}
+                                hold={hold}
+                                engine={this.props.engine}
+                                onSelect={this.props.onSelect}
+                            />;
                         }.bind(this))
-                    }
+                        }
                 </div>
                 <div>
                     <div className='w5-10 left'>

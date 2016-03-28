@@ -1,4 +1,4 @@
-package email.com.gmail.ttsai0509.cruxer.config.production;
+package email.com.gmail.ttsai0509.cruxer.config;
 
 import email.com.gmail.ttsai0509.cruxer.intercept.AccountInjector;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 @Profile("production")
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+public class ProdWebConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private AccountInjector accountInjector;

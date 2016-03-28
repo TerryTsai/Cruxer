@@ -36,12 +36,11 @@ var CRUXER = (function(CRUXER, $, B) {
         var normal = pickInfo.getNormal();
 
         // Get Local Coordinates
-        var matrix = new BABYLON.Matrix();
+        var matrix = new B.Matrix();
         pickInfo.pickedMesh.getWorldMatrix().invertToRef(matrix);
-        var local = BABYLON.Vector3.TransformCoordinates(pickInfo.pickedPoint, matrix);
 
         // Update Cruxer Variables
-        mesh.cruxer.position = local;
+        mesh.cruxer.position = B.Vector3.TransformCoordinates(pickInfo.pickedPoint, matrix);
         mesh.cruxer.spin = mesh.cruxer.spin || 0;
         mesh.cruxer.rotAxis = B.Vector3.Cross(B.Axis.Y, normal).normalize();
         mesh.cruxer.rotAngle = Math.acos(B.Vector3.Dot(normal, B.Axis.Y));
@@ -250,8 +249,7 @@ var CRUXER = (function(CRUXER, $, B) {
     CRUXER.Engine.prototype.loadScene = function() {
 
         // TODO : Refactor scene loading. Allow customization.
-
-        this.ground = B.Mesh.CreateGround(name, 500.0, 500.0, 1, this.scene);
+        this.ground = B.Mesh.CreateGround(name, 100.0, 100.0, 1, this.scene);
         this.ground.material = new B.StandardMaterial("", this.scene);
         this.ground.material.diffuseColor.r = 0.9;
         this.ground.material.diffuseColor.g = 0.9;
@@ -265,7 +263,7 @@ var CRUXER = (function(CRUXER, $, B) {
         this.ground.cruxer = {
             id: "",
             type: "floors",
-            doExport: false,
+            doExport: false
         };
 
         this.cursor = B.Mesh.CreateSphere('sphere1', 16, 2, this.scene);
@@ -279,10 +277,9 @@ var CRUXER = (function(CRUXER, $, B) {
         var light0 = new B.HemisphericLight("", new B.Vector3(0, 1, 0), this.scene);
         light0.intensity = 0.5;
 
-
-        var light = new B.DirectionalLight("", new B.Vector3(-100, -20, -100), this.scene);
-        light.position = new B.Vector3(100, 20, 100);
-        light.intensity = 0.5;
+        var light = new B.DirectionalLight("", new B.Vector3(0, -10, -20), this.scene);
+        light.position = new B.Vector3(0, 10, 20);
+        light.intensity = 0.7;
 
         this.shadowGenerator = new BABYLON.ShadowGenerator(4096, light);
         this.shadowGenerator.useVarianceShadowMap = false;
@@ -290,7 +287,6 @@ var CRUXER = (function(CRUXER, $, B) {
     };
 
     CRUXER.Engine.prototype.cameraMode = function(mode) {
-
         this._mode = mode;
     };
 
@@ -309,7 +305,7 @@ var CRUXER = (function(CRUXER, $, B) {
             this._mesh.cruxer.diffuse = B.Color3.FromHexString(hex);
             updateMesh(this._mesh);
         }
-    }
+    };
 
     CRUXER.Engine.prototype.meshSelect = function(mesh) {
         if (mesh.cruxer.type !== "holds" && mesh.cruxer.type !== "walls") {
@@ -444,7 +440,7 @@ var CRUXER = (function(CRUXER, $, B) {
         }
     };
 
-    CRUXER.Engine.prototype.engineExport = function() {
+    CRUXER.Engine.prototype.engineExport = function(name, grade) {
 
         var exportId = 0;
 
@@ -461,7 +457,8 @@ var CRUXER = (function(CRUXER, $, B) {
 
         // Build exported route
         var route = {
-            name: Math.random().toString(36).substring(2, 5),
+            name: name,
+            grade: grade,
             wallInstances: [],
             thumbnailRaw: null
         };
@@ -524,8 +521,7 @@ var CRUXER = (function(CRUXER, $, B) {
         var loadMesh = function(dto, type, modelUrl) {
             var task = this.assets.addMeshTask("", "", urlRoot(modelUrl), urlFile(modelUrl));
             task.onSuccess = function(task) {
-                var mesh = task.loadedMeshes[0];
-                dto.mesh = mesh;
+                dto.mesh = task.loadedMeshes[0];
                 dto.mesh.material = new B.StandardMaterial("", this.scene);
                 dto.mesh.material.specularColor.r = 0;
                 dto.mesh.material.specularColor.g = 0;
@@ -564,7 +560,7 @@ var CRUXER = (function(CRUXER, $, B) {
                 this.onFinish = function(tasks) {
                     if (tasks) this.reset();
                 };
-            }
+            };
             this.assets.load();
         }.bind(this);
 
@@ -603,8 +599,7 @@ window.addEventListener("keypress", function(e) {
     }
 });
 
-$('#cruxer-delete').on('click', function(e) { engine.cameraMode(1); });
-$('#cruxer-save').on('click', function(e) { engine.engineExport(); });
+$('#cruxer-delete').on('click', function() { engine.cameraMode(1); });
 $("#cruxer-color").spectrum({
     color: "#888888",
     change: function(color) {

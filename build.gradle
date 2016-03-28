@@ -26,8 +26,8 @@ repositories {
 
 // Cruxer Packaging
 jar {
-    baseName = 'cruxer'
-    version =  '0.0.1'
+    baseName = 'Cruxer'
+    version =  ''
 }
 
 // Dependencies
@@ -40,11 +40,14 @@ dependencies {
 
     compile 'org.springframework:spring-context-support:4.2.3.RELEASE'
 
-    compile 'javax.mail:javax.mail-api:1.5.5'
+    compile 'org.postgresql:postgresql:9.4.1208.jre7'
     compile 'com.h2database:h2:1.4.190'
     compile 'mysql:mysql-connector-java:5.1.38'
+
+    compile 'javax.mail:javax.mail-api:1.5.5'
     compile 'org.projectlombok:lombok:1.16.6'
     compile 'net.sourceforge.nekohtml:nekohtml:1.9.22'
+    compile 'com.amazonaws:aws-java-sdk-s3:1.10.62'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'org.springframework.security:spring-security-test'

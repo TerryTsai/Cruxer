@@ -1,5 +1,7 @@
 package email.com.gmail.ttsai0509.cruxer.controller;
 
+import email.com.gmail.ttsai0509.cruxer.model.Route;
+import email.com.gmail.ttsai0509.cruxer.repository.RouteRepository;
 import email.com.gmail.ttsai0509.cruxer.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class SiteController {
 
     @Autowired private AccountService accountService;
+    @Autowired private RouteRepository routeRepository;
 
     @RequestMapping(value = {"", "/", "/index.html"}, method = RequestMethod.GET)
     public String getIndex() {
@@ -46,8 +49,10 @@ public class SiteController {
     @Secured({"ROLE_USER"})
     @RequestMapping(value = {"/design.html"}, method = RequestMethod.GET)
     public String getDesign(@RequestParam(required = false) String id, Model model) {
+
         if (id != null && !id.isEmpty())
-            model.addAttribute("id", id);
+            model.addAttribute("route", routeRepository.findOne(id));
+
         return "design";
     }
 

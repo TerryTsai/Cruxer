@@ -28,7 +28,9 @@ public class AccountRestController {
     @Secured({"ROLE_USER"})
     @JsonView(AccountViews.Standard.class)
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List<Account> getAccounts(Pageable pageable) {
+    public List<Account> getAccounts(
+            Pageable pageable
+    ) {
 
         return accountRepo.findAll(pageable).getContent();
 
@@ -37,7 +39,9 @@ public class AccountRestController {
     @Secured({"ROLE_USER"})
     @JsonView(AccountViews.Standard.class)
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Account getAccount(@PathVariable String id) {
+    public Account getAccount(
+            @PathVariable String id
+    ) {
 
         return accountRepo.findOne(id);
 

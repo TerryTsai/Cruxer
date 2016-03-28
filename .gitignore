@@ -1,13 +1,28 @@
-# File Types
-*.class
-*.ini
-
-
-# Folders
+.gradle/
 archive/
 files/
 gradle/
+build/
 
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
 
 # Production Properties
-application-production.yml
+/desktop.ini
+/src/main/resources/application-production.yml

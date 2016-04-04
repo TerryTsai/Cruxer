@@ -10,7 +10,7 @@ import email.com.gmail.ttsai0509.cruxer.model.WallInstance;
 import email.com.gmail.ttsai0509.cruxer.repository.*;
 import email.com.gmail.ttsai0509.cruxer.service.AccountService;
 import email.com.gmail.ttsai0509.cruxer.service.FileService;
-import email.com.gmail.ttsai0509.cruxer.service.LocalFileService;
+import email.com.gmail.ttsai0509.cruxer.service.file.LocalFileService;
 import email.com.gmail.ttsai0509.cruxer.view.RouteViews;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

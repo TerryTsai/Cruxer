@@ -63,7 +63,7 @@
             url: "holds",
             type: "post",
             dataType: "json",
-            beforeSubmit: function(arr, $form, options) {
+            beforeSubmit: function(arr) {
                 var data = holdThumb[0].toDataURL("image/jpeg", 1.0);
                 arr.push({
                     name: "thumbnail",
@@ -119,6 +119,7 @@
         );
     });
     </script>
+    <script th:replace="header :: script"></script>
 </body>
 
 </html>

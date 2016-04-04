@@ -16,9 +16,11 @@ upload.file:
   charset: ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
   length: 25
 
-# Hibernate H2 Dialect
-spring.jpa.properties.hibernate:
-  dialect: org.hibernate.dialect.H2Dialect
+# JPA Settings
+spring.jpa:
+  properties.hibernate.dialect: org.hibernate.dialect.H2Dialect
+  hibernate.ddl-auto: create
+  show-sql: true
 
 # Gmail Account Information
 spring.mail:

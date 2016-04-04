@@ -11,26 +11,78 @@
 
 **********************/
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 776px) {
     body { margin: 0 30px; }
+
+    .top-nav_menu {
+        display: none;
+    }
+
+    .top-nav_body, .top-nav_body-active {
+        flex: 1 1 auto;
+    }
+
+    .top-nav_link {
+        padding: 2px 20px;
+    }
+
+    .top-nav_link-page {
+        float: left;
+    }
+
+    .top-nav_link-account {
+        float: right;
+    }
 }
 
-@media only screen and (max-width: 767px) {
-    body { margin: 0 5px; }
+@media only screen and (max-width: 775px) {
+    .top-nav_body {
+        background: #aaa;
+        left: 0;
+        display: none;
+        position: absolute;
+        text-align: center;
+        top: 44px;
+        width: 100%;
+    }
+
+    .top-nav_body-active {
+        display: block;
+    }
+
+    .top-nav_link {
+        font-size: 1.8em;
+        width: 100%;
+    }
+
+    .top-nav_link-page, .top-nav_link-account {
+        display: block;
+    }
 }
 
 /* @1 Top Navigation */
 .top-nav {
-    align-items: center;
     border-bottom: 1px solid black;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
-.top-nav__link {
+.top-nav_logo {
+    padding: 5px;
+    flex: 0 0 auto;
+}
+
+.top-nav_menu {
+    padding: 5px;
+    flex: 0 0 auto;
+}
+
+.top-nav_link {
     color: #333;
-    padding: 2px 20px;
 }
 
-.top-nav__link:hover, .top-nav__link:focus {
+.top-nav_link:hover, .top-nav_link:focus {
     background-color: #333;
     color: #ddd;
     outline: none;
@@ -269,12 +321,6 @@ footer {
 
 fieldset {
     font-family: 'Lato', sans-serif;
-}
-
-form {
-    width: 300px;
-    padding: 0 20px;
-    margin: auto;
 }
 
 input, button, select {

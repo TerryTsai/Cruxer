@@ -22,7 +22,7 @@ public class ProdWebConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/jsx/**").addResourceLocations("classpath:/web/jsx/");
 
         // TODO : Server should be stateless. Files belong on separate file server.
-        registry.addResourceHandler("/files/**").addResourceLocations("file:files/");
+        // registry.addResourceHandler("/files/**").addResourceLocations("file:files/");
     }
 
     @Override

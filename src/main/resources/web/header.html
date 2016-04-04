@@ -15,23 +15,40 @@
 </head>
 
 <body>
-    <nav class="top-nav flex" th:fragment="header">
-        <img class='pad-side-05' src='img/logo.png' />
-        <div class='flex-left'>
-            <a class="top-nav__link" href='index.html'>HOME</a>
-            <a class="top-nav__link" href='design.html'>DESIGN</a>
-            <a class="top-nav__link" href='upload.html'>UPLOAD</a>
-            <a class="top-nav__link" href='about.html'>ABOUT</a>
-        </div>
-        <div class='flex-right' th:if="${account == null}">
-            <a class="top-nav__link" href='login.html'>LOGIN</a>
-            <a class="top-nav__link" href='register.html'>REGISTER</a>
-        </div>
-        <form class='flex-right' th:if="${account != null}" action="logout" method="post">
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <a class="top-nav__link" href='account.html'>ACCOUNT</a>
-            <a class="top-nav__link" href="javascript:" onclick="parentNode.submit();">LOGOUT</a>
-        </form>
-    </nav>
+
+<!-- HEADER FRAGMENT -->
+<nav class='top-nav' th:fragment='header'>
+    <img class='top-nav_logo' src='img/logo.png'/>
+
+    <form class='top-nav_body' action='logout' method='post'>
+        <input type='hidden' th:name='${_csrf.parameterName}' th:value='${_csrf.token}'/>
+        
+        <a class='top-nav_link top-nav_link-page' href='index.html'>HOME</a>
+        <a class='top-nav_link top-nav_link-page' href='design.html'>DESIGN</a>
+        <a class='top-nav_link top-nav_link-page' href='upload.html'>UPLOAD</a>
+        <a class='top-nav_link top-nav_link-page' href='about.html'>ABOUT</a>
+        
+        <a th:if='${account == null}' class='top-nav_link top-nav_link-account' href='login.html'>LOGIN</a>
+        <a th:if='${account == null}' class='top-nav_link top-nav_link-account' href='register.html' >REGISTER</a>
+        <a th:if='${account != null}' class='top-nav_link top-nav_link-account' href='account.html'>ACCOUNT</a>
+        <a th:if='${account != null}' class='top-nav_link top-nav_link-account' href='javascript:' onclick='parentNode.submit();'>LOGOUT</a>
+    </form>
+
+    <img class='top-nav_menu' src='img/sandwich.png'/>
+</nav>
+<!-- HEADER FRAGMENT -->
+
+<script src='js/jquery-2.2.1.min.js'></script>
+<script src='js/jquery.mobile.custom.min.js'></script>
+
+<!-- SCRIPT FRAGMENT -->
+<script th:fragment='script'>
+    $('.top-nav_menu').on("vclick", function () {
+        $('.top-nav_body').toggleClass('top-nav_body-active');
+    });
+</script>
+<!-- SCRIPT FRAGMENT -->
+
+</body>
 
 </html>

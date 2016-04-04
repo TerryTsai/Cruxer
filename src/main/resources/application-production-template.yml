@@ -18,9 +18,11 @@ upload.file:
   accessKey: #####
   secretKey: #####
 
-# Hibernate PostgreSQL Dialect
-spring.jpa.properties.hibernate:
-  dialect: org.hibernate.dialect.PostgreSQLDialect
+# JPA Settings
+spring.jpa:
+  properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  hibernate.ddl-auto: validate
+  show-sql: true
 
 # Gmail Account Information
 spring.mail:

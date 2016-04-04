@@ -12,29 +12,31 @@
     <link rel='stylesheet' type='text/css' href='css/reset.css'>
     <link rel='stylesheet' type='text/css' href='css/common.css'>
     <link rel='stylesheet' type='text/css' href='css/cruxer.css'>
-    <link rel='stylesheet' type='text/css' href='css/simplegrid.css'>
 </head>
 
 <body>
-    <div th:replace="header :: header"></div>
+<div th:replace="header :: header"></div>
 
-    <section>
-        <div id="route-list"></div>
-    </section>
+<section>
+    <div id="route-list"></div>
+</section>
 
-    <script src='js/jquery-2.2.1.min.js'></script>
-    <script src='js/jquery.mousewheel.min.js'></script>
-    <script src='js/moment.min.js'></script>
-    <!-- ReactJS -->
-    <script src='js/react.min.js'></script>
-    <script src='js/react-dom.min.js'></script>
-    <script src="js/browser.min.js"></script>
-    <script type='text/babel' src='jsx/RouteView.jsx'></script>
-    <script type='text/babel' src='jsx/RouteListView.jsx'></script>
-    <script type='text/babel'>
+<script src='js/jquery-2.2.1.min.js'></script>
+<script src='js/jquery.mobile.custom.min.js'></script>
+<script src='js/jquery.mousewheel.min.js'></script>
+<script src='js/moment.min.js'></script>
+<!-- ReactJS -->
+<script src='js/react.min.js'></script>
+<script src='js/react-dom.min.js'></script>
+<script src="js/browser.min.js"></script>
+<script type='text/babel' src='jsx/RouteView.jsx'></script>
+<script type='text/babel' src='jsx/RouteListView.jsx'></script>
+<script type='text/babel'>
         ReactDOM.render(
         <RouteListView header="Routes"/>, document.getElementById('route-list') );
-    </script>
+
+</script>
+<script th:replace="header :: script"></script>
 </body>
 
 </html>

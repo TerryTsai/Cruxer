@@ -8,11 +8,6 @@ multipart:
 spring:
   profiles.active: development
 
-  jpa:
-    show-sql: false
-    hibernate:
-      ddl-auto: validate
-
   thymeleaf:
     mode: LEGACYHTML5
     cache: false

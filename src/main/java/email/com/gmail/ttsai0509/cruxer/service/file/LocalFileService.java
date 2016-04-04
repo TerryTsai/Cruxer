@@ -1,7 +1,8 @@
-package email.com.gmail.ttsai0509.cruxer.service;
+package email.com.gmail.ttsai0509.cruxer.service.file;
 
 import email.com.gmail.ttsai0509.cruxer.exception.InternalException;
 import email.com.gmail.ttsai0509.cruxer.exception.InvalidInputException;
+import email.com.gmail.ttsai0509.cruxer.service.FileService;
 import email.com.gmail.ttsai0509.cruxer.util.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;

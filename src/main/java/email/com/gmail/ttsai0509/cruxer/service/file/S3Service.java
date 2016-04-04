@@ -1,4 +1,4 @@
-package email.com.gmail.ttsai0509.cruxer.service;
+package email.com.gmail.ttsai0509.cruxer.service.file;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import email.com.gmail.ttsai0509.cruxer.exception.InternalException;
+import email.com.gmail.ttsai0509.cruxer.service.FileService;
 import email.com.gmail.ttsai0509.cruxer.util.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
